@@ -1,0 +1,44 @@
+{
+  "name": "template_repo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "serve": "webpack serve --open",
+    "clean": "npx prettier . --write",
+    "deploy": "./scripts/deploy.sh",
+    "build": "webpack --config ./configs/webpack.prod.js",
+    "dev": "webpack serve --open --config ./configs/webpack.dev.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mozartdd/template_repo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mozartdd/template_repo/issues"
+  },
+  "homepage": "https://github.com/mozartdd/template_repo#readme",
+  "description": "",
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "babel-jest": "^30.0.5",
+    "css-loader": "^7.1.2",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.3",
+    "prettier": "3.6.2",
+    "sass": "^1.90.0",
+    "sass-loader": "^16.0.5",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.101.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2",
+    "webpack-merge": "^6.0.1"
+  },
+  "dependencies": {
+    "jest": "^30.0.5"
+  }
+}
