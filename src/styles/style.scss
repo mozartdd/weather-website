@@ -1,0 +1,77 @@
+$light-bg: #e9ecef;
+$light-dash-bg: #f8f9fa;
+
+body {
+  background-color: $light-bg;
+}
+
+button:not(#theme-btn) {
+  border: none;
+  background-color: $light-dash-bg;
+}
+
+header {
+  display: flex;
+  background-color: $light-dash-bg;
+  padding: 2vw;
+  justify-content: space-between;
+}
+
+#header-left {
+  display: flex;
+  background-color: $light-dash-bg;
+}
+
+#hamburger {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  div {
+    width: 22px;
+    height: 3px;
+    background-color: black;
+  }
+}
+
+#logo {
+  font-weight: bold;
+  color: #343a40;
+}
+
+#header-right {
+  position: relative;
+}
+
+#search-location-btn#search-location-btn {
+  position: absolute;
+  left: -25px;
+  padding: 3px;
+
+  border-left: 2px solid;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+
+  border-bottom-left-radius: 20%;
+  border-top-left-radius: 20%;
+}
+#geolocation-btn#geolocation-btn {
+  position: absolute;
+  right: -25px;
+  padding: 3px;
+
+  border-right: 2px solid;
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+
+  border-bottom-right-radius: 20%;
+  border-top-right-radius: 20%;
+}
+
+input {
+  background-color: $light-dash-bg;
+  min-width: 200px;
+  border-left: none;
+  border-right: none;
+}

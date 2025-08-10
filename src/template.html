@@ -5,5 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <div id="header-left">
+        <button id="hamburger" aria-label="Open menu" aria-expanded="false">
+          <div aria-hidden="true"></div>
+          <div aria-hidden="true"></div>
+          <div aria-hidden="true"></div>
+        </button>
+
+        <div id="logo" aria-hidden="true">
+          SkyBlue
+        </div>
+      </div>
+      <div aria-hidden="true" id="header-right">
+        <button id="search-location-btn" aria-label="Search location">
+          <img aria-hidden="true" src="./assets/magnifying-glass-backup-svgrepo-com.svg" width="20">
+        </button>
+        <label for="location-search"></label>
+        <input type="text" id="location-search" name="location-input" placeholder="Search location">
+        <button id="geolocation-btn">
+            <img aria-hidden="true" src="./assets/geolocation-svgrepo-com.svg" width="20">
+        </button>
+      </div>
+      <button id="theme-btn">
+        Light
+      </button>
+    </header>
+  </body>
 </html>

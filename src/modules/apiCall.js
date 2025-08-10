@@ -30,10 +30,20 @@ export async function getWeatherData(location) {
   return dataObject;
 }
 
+// async function asyncChain(location) {
+//   try {
+//     const data = await getWeatherData(location);
+//     document.querySelector('h1').innerText = data.tempC;
+//   }
+//   catch {
+
+//   }
+// }
+
 function fahrenheitToCelsius(temp) {
   const celsius = ((temp - 32) * 5) / 9;
   return Number(celsius.toFixed(1));
 }
 
-getWeatherData('sikibrikisaki')
+// asyncChain('London')
 
