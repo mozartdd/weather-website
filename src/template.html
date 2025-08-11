@@ -20,23 +20,23 @@
         </div>
       </div>
       <div aria-hidden="true" id="header-right">
-        <button class="location-btn" id="search-location-btn" aria-label="Search location">
+        <button class="location-btn" id="search-location-btn" aria-label="Search location" data-search-location>
           <img aria-hidden="true" src="./assets/magnifying-glass-backup-svgrepo-com.svg" width="20">
         </button>
         <label for="location-search"></label>
-        <input type="text" id="location-search" name="location-input" placeholder="Search location">
+        <input type="text" id="location-search" name="location-input" placeholder="Search location" data-location-input>
         <button class="location-btn" id="geolocation-btn">
             <img aria-hidden="true" src="./assets/geolocation-svgrepo-com.svg" width="20">
         </button>
       </div>
       <button data-light class="theme-btn hidden" id="light-theme" aria-label="Light mode is on">
-        <div class="sliding-el">
+        <div class="sliding-light">
           <img aria-hidden="true" src="./assets/sunny-svgrepo-com.svg" width="20">
           <p>Light</p>
         </div>
       </button>
       <button data-dark class="theme-btn" id="dark-theme" aria-label="Dark mode is on">
-        <div class="sliding-el">
+        <div class="sliding-dark">
           <img aria-hidden="true" src="./assets/moon-stars-svgrepo-com.svg" width="20">
           <p>Dark</p>
         </div>
@@ -49,24 +49,25 @@
           <h1>
             Current Weather
           </h1>
-          <p id="time">02:50</p>
+          <p id="time" data-time>02:50</p>
         </div>
         <div id="middle">
           <div id="mid-left">
             <span id="current-icon" data-curr-icon>
               ICON
             </span>
-            <p id="curr-temp" data-curr-temp>
-              12C
-            </p>
+            <span id="curr-temp" data-curr-temp>
+              <p></p>
+              <p>°C</p>
+            </span>
           </div>
-          <div id="mid-right">
-            <p id="curr-forcast" data-curr-forecast>Rainy</p>
-            <p id="feels-like" data-feels-like>Feels Like 35C</p>
+          <div id="mid-rightw">
+            <p id="curr-forcast" data-curr-forecast></p>
+            <p id="feels-like" data-feels-like></p>
           </div>
         </div>
         <div id="bottom">
-          <p>
+          <p data-description>
             Mostly sunny day
           </p>
         </div>

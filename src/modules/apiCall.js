@@ -17,7 +17,6 @@ export async function getWeatherPromise(location) {
 // Stores weather data in weather object
 export async function getWeatherData(location) {
   const weatherData = await getWeatherPromise(location);
-  const timeData = DateTime.now().setZone(weatherData.timezone);
   const current = weatherData.currentConditions;
   const future = weatherData.days;
 
@@ -25,23 +24,27 @@ export async function getWeatherData(location) {
     address: weatherData.resolvedAddress,
     tempF: current.temp,
     tempC: fahrenheitToCelsius(current.temp),
-    currentTime: timeData.hour + ':' + timeData.minute,
+    currentTime: getCurrentTime(weatherData.timezone),
+    conditions: current.conditions,
+    feelsLikeF: current.feelslike,
+    feelsLikeC: fahrenheitToCelsius(current.feelslike),
+    description: weatherData.description
   };
 
+  console.log(weatherData);
   return dataObject;
 }
-
-// async function asyncChain(location) {
-//   try {
-//     const data = await getWeatherData(location);
-//   }
-//   catch {
-
-//   }
-// }
 
 function fahrenheitToCelsius(temp) {
   const celsius = ((temp - 32) * 5) / 9;
   return Number(celsius.toFixed(1));
+}
+
+// If hrs or minutes of time is smaller than 10 prefix it with 0
+function getCurrentTime(location) {
+  const timeData = DateTime.now().setZone(location);
+  let hour = timeData.hour < 10 ? '0' + timeData.hour : timeData.hour;
+  let minute = timeData.minute < 10 ? '0' + timeData.minute : timeData.minute;
+  return hour + ':' + minute;
 }
 
