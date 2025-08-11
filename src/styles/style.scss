@@ -1,20 +1,26 @@
 $light-bg: #e9ecef;
 $light-dash-bg: #f8f9fa;
+$header-comp-borders: 2px solid gray;
+$sky-blue: #415a77;
 
 body {
   background-color: $light-bg;
 }
 
-button:not(#theme-btn) {
+button:not(.theme-btn) {
   border: none;
   background-color: $light-dash-bg;
 }
 
 header {
   display: flex;
-  background-color: $light-dash-bg;
-  padding: 2vw;
   justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  background-color: $light-dash-bg;
+  padding: 1em;
+  min-width: 460px;
 }
 
 #header-left {
@@ -26,6 +32,7 @@ header {
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 3px;
 
   div {
@@ -37,7 +44,8 @@ header {
 
 #logo {
   font-weight: bold;
-  color: #343a40;
+  color: $sky-blue;
+  margin: auto;
 }
 
 #header-right {
@@ -48,10 +56,11 @@ header {
   position: absolute;
   left: -25px;
   padding: 3px;
+  cursor: pointer;
 
-  border-left: 2px solid;
-  border-top: 2px solid;
-  border-bottom: 2px solid;
+  border-left: $header-comp-borders;
+  border-top: $header-comp-borders;
+  border-bottom: $header-comp-borders;
 
   border-bottom-left-radius: 20%;
   border-top-left-radius: 20%;
@@ -60,18 +69,54 @@ header {
   position: absolute;
   right: -25px;
   padding: 3px;
+  cursor: pointer;
 
-  border-right: 2px solid;
-  border-top: 2px solid;
-  border-bottom: 2px solid;
+  border-right: $header-comp-borders;
+  border-top: $header-comp-borders;
+  border-bottom: $header-comp-borders;
 
   border-bottom-right-radius: 20%;
   border-top-right-radius: 20%;
+  background-color: $light-bg;
 }
 
 input {
   background-color: $light-dash-bg;
-  min-width: 200px;
+  min-width: 150px;
   border-left: none;
   border-right: none;
+  border: $header-comp-borders;
+}
+
+.theme-btn {
+  border-radius: 20px;
+  overflow: hidden;
+  min-width: 80px;
+}
+
+.sliding-el {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+
+  animation: 1s slide-in;
+}
+
+#dark-theme {
+  background-color: $sky-blue;
+  
+  p {
+    color: $light-dash-bg;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-25px);
+  }
 }
