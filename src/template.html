@@ -6,6 +6,7 @@
     <title>Document</title>
   </head>
   <body>
+
     <header>
       <div id="header-left">
         <button id="hamburger" aria-label="Open menu" aria-expanded="false">
@@ -14,17 +15,17 @@
           <div aria-hidden="true"></div>
         </button>
 
-        <div id="logo" aria-hidden="true">
+        <div id="logo" aria-hidden="true" class="hidden">
           SkyBlue
         </div>
       </div>
       <div aria-hidden="true" id="header-right">
-        <button id="search-location-btn" aria-label="Search location">
+        <button class="location-btn" id="search-location-btn" aria-label="Search location">
           <img aria-hidden="true" src="./assets/magnifying-glass-backup-svgrepo-com.svg" width="20">
         </button>
         <label for="location-search"></label>
         <input type="text" id="location-search" name="location-input" placeholder="Search location">
-        <button id="geolocation-btn">
+        <button class="location-btn" id="geolocation-btn">
             <img aria-hidden="true" src="./assets/geolocation-svgrepo-com.svg" width="20">
         </button>
       </div>
@@ -41,5 +42,111 @@
         </div>
       </button>
     </header>
+
+    <main>
+      <section id="curr-weather" data-current-weather>
+        <div id="top" aria-hidden="true">
+          <h1>
+            Current Weather
+          </h1>
+          <p id="time">02:50</p>
+        </div>
+        <div id="middle">
+          <div id="mid-left">
+            <span id="current-icon" data-curr-icon>
+              ICON
+            </span>
+            <p id="curr-temp" data-curr-temp>
+              12C
+            </p>
+          </div>
+          <div id="mid-right">
+            <p id="curr-forcast" data-curr-forecast>Rainy</p>
+            <p id="feels-like" data-feels-like>Feels Like 35C</p>
+          </div>
+        </div>
+        <div id="bottom">
+          <p>
+            Mostly sunny day
+          </p>
+        </div>
+      </section>
+
+      <section id="curr-details" data-curr-details>
+        <div>
+          <h2>Air Quality</h2>
+          <p class="detail-data" data-details></p>
+        </div>
+        <div>
+          <h2>
+            Wind
+          </h2>
+          <p class="detail-data" data-details></p>
+        </div>
+        <div>
+          <h2>Humidity</h2>
+          <p class="detail-data" data-details></p>
+        </div>
+        <div>
+          <h2>Visibility</h2>
+          <p class="detail-data" data-details></p>
+        </div>
+      </section>
+
+      <section id="future-data" data-future>
+        <div class="day-select" data-day-select>
+          <p>Next Week</p>
+        </div>
+        <div class="future-forcast" data-future-cards>
+          <div class="card">
+            <!-- <img src="" class="future-icon"> -->
+            <p class="future-forcast"></p>
+            <p class="future-temp"></p>
+            <p class="future-wind"></p>
+          </div>
+          <div class="card">
+            <!-- <img src="" class="future-icon"> -->
+            <p class="future-forcast"></p>
+            <p class="future-temp"></p>
+            <p class="future-wind"></p>
+          </div>
+          <div class="card">
+            <!-- <img src="" class="future-icon"> -->
+            <p class="future-forcast"></p>
+            <p class="future-temp"></p>
+            <p class="future-wind"></p>
+          </div>
+          <div class="card">
+            <!-- <img src="" class="future-icon"> -->
+            <p class="future-forcast"></p>
+            <p class="future-temp"></p>
+            <p class="future-wind"></p>
+          </div>
+          <div class="card">
+            <!-- <img src="" class="future-icon"> -->
+            <p class="future-forcast"></p>
+            <p class="future-temp"></p>
+            <p class="future-wind"></p>
+          </div>
+          <div class="card">
+            <!-- <img src="" class="future-icon"> -->
+            <p class="future-forcast"></p>
+            <p class="future-temp"></p>
+            <p class="future-wind"></p>
+          </div>
+          <div class="card">
+            <!-- <img src="" class="future-icon"> -->
+            <p class="future-forcast"></p>
+            <p class="future-temp"></p>
+            <p class="future-wind"></p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sun-details" data-sunrise>
+        <p>Sunset & Sunrise Summary</p>
+      </section>
+    </main>
+
   </body>
 </html>

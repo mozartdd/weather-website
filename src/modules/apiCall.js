@@ -27,13 +27,13 @@ export async function getWeatherData(location) {
     tempC: fahrenheitToCelsius(current.temp),
     currentTime: timeData.hour + ':' + timeData.minute,
   };
+
   return dataObject;
 }
 
 // async function asyncChain(location) {
 //   try {
 //     const data = await getWeatherData(location);
-//     document.querySelector('h1').innerText = data.tempC;
 //   }
 //   catch {
 
@@ -44,6 +44,4 @@ function fahrenheitToCelsius(temp) {
   const celsius = ((temp - 32) * 5) / 9;
   return Number(celsius.toFixed(1));
 }
-
-// asyncChain('London')
 

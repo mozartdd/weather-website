@@ -2,42 +2,60 @@ $light-bg: #e9ecef;
 $light-dash-bg: #f8f9fa;
 $header-comp-borders: 2px solid gray;
 $sky-blue: #415a77;
+$small-padding: 3px;
+$input-position: -25px;
+$small-radius: 20px;
+$small-margin: 1rem;
+
+@mixin flex-and-bg {
+  background-color: $light-dash-bg;
+  display: flex;
+}
+@mixin default-btn {
+  border: none;
+  cursor: pointer;
+  background-color: $light-dash-bg;
+}
+@mixin input-btn {
+  position: absolute;
+  padding: $small-padding;
+  border-top: $header-comp-borders;
+  border-bottom: $header-comp-borders;
+}
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+
+}
 
 body {
   background-color: $light-bg;
-}
-
-button:not(.theme-btn) {
-  border: none;
-  background-color: $light-dash-bg;
+  height: 100vh
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
+  @include flex-and-bg;
 
-  background-color: $light-dash-bg;
-  padding: 1em;
-  min-width: 460px;
+  align-items: center;
+  justify-content: space-around;
+
+  padding: .5rem;
 }
 
 #header-left {
-  display: flex;
-  background-color: $light-dash-bg;
+  @include flex-and-bg;
 }
 
 #hamburger {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
+  @include default-btn;
+
+  @include flex-column;
   justify-content: center;
-  gap: 3px;
+  gap: $small-padding;
 
   div {
-    width: 22px;
-    height: 3px;
+    width: $small-radius;
+    height: $small-padding;
     background-color: black;
   }
 }
@@ -52,46 +70,59 @@ header {
   position: relative;
 }
 
-#search-location-btn#search-location-btn {
-  position: absolute;
-  left: -25px;
-  padding: 3px;
-  cursor: pointer;
+#search-location-btn {
+  @include default-btn;
+  @include input-btn;
 
+  left: $input-position;
   border-left: $header-comp-borders;
-  border-top: $header-comp-borders;
-  border-bottom: $header-comp-borders;
-
-  border-bottom-left-radius: 20%;
-  border-top-left-radius: 20%;
+  border-bottom-left-radius: $small-radius;
+  border-top-left-radius: $small-radius;
 }
-#geolocation-btn#geolocation-btn {
-  position: absolute;
-  right: -25px;
-  padding: 3px;
-  cursor: pointer;
+#geolocation-btn{
+  @include default-btn;
+  @include input-btn;
 
+  right: $input-position;
+  border-bottom-right-radius: $small-radius;
+  border-top-right-radius: $small-radius;
   border-right: $header-comp-borders;
-  border-top: $header-comp-borders;
-  border-bottom: $header-comp-borders;
 
-  border-bottom-right-radius: 20%;
-  border-top-right-radius: 20%;
   background-color: $light-bg;
+}
+
+.location-btn {
+  img {
+    transition: transform .5s;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
 }
 
 input {
   background-color: $light-dash-bg;
-  min-width: 150px;
+  max-width: 150px;
   border-left: none;
   border-right: none;
   border: $header-comp-borders;
 }
 
 .theme-btn {
-  border-radius: 20px;
+  cursor: pointer;
+
+  border-radius: $small-radius;
   overflow: hidden;
   min-width: 80px;
+  transition: transform .2s;
+  // margin-right: rem;
+
+  &:active {
+    transform: scale(.94);
+  }
+  &:hover {
+    transform: scale(.98);
+  }
 }
 
 .sliding-el {
@@ -111,9 +142,57 @@ input {
   }
 }
 
+#light-theme {
+  border: 1px solid $sky-blue;
+}
+
 .hidden {
   display: none;
 }
+
+main {
+  @include flex-column;
+
+  margin: 2rem;
+  gap: 1rem;
+  height: 100%;
+
+  section {
+    border: 1px solid;
+    border-radius: $small-radius;
+  }
+}
+
+#curr-weather {
+  @include flex-column;
+}
+#top {
+  @include flex-column;
+
+  h1, p {
+    margin-left: $small-margin;
+  }
+}
+#middle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  span {
+    margin-left: $small-margin;
+  }
+}
+#mid-left {
+  display: flex;
+  gap: 1rem;
+}
+#mid-right p {
+  margin-right: $small-margin;
+}
+#bottom p {
+  margin-left: $small-margin;
+}
+
 
 @keyframes slide-in {
   from {
