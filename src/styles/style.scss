@@ -4,7 +4,7 @@ $header-comp-borders: 2px solid gray;
 $sky-blue: #415a77;
 $small-padding: 3px;
 $input-position: -25px;
-$small-radius: 20px;
+$small-radius: 10px;
 $small-margin: 1rem;
 
 @mixin flex-and-bg {
@@ -30,15 +30,32 @@ $small-margin: 1rem;
 
 body {
   background-color: $light-bg;
-  height: 100vh
+  height: 100vh;
 }
 
 header {
   @include flex-and-bg;
+  position: static;
 
   align-items: center;
   justify-content: space-around;
 
+  padding: .5rem;
+}
+
+#hamburger-bar {
+  position: absolute;
+  background-color: $light-dash-bg;
+  border-bottom-left-radius: $small-radius;
+  border-bottom-right-radius: $small-radius;
+  top: 45px;
+  left: 0px;
+  height: 45px;
+  width: 75px;
+  border: $header-comp-borders;
+  border-top: 1px solid rgb(192, 168, 168);
+  display: flex;
+  justify-content: space-between;
   padding: .5rem;
 }
 
@@ -54,7 +71,7 @@ header {
   gap: $small-padding;
 
   div {
-    width: $small-radius;
+    width: 20px;
     height: $small-padding;
     background-color: black;
   }
@@ -165,7 +182,7 @@ main {
   gap: 1rem;
   height: 100%;
 
-  section {
+  section:not(#curr-details) {
     border: 1px solid;
     border-radius: $small-radius;
     background-color: $light-dash-bg
@@ -224,6 +241,25 @@ h2 {
   font-size: 15px;
 }
 
+#curr-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $small-padding;
+
+}
+
+.first-curr-div {
+  background-color: $light-dash-bg;
+  border: $header-comp-borders;
+  border-radius: $small-radius;
+  padding: .5rem 1.2rem .6rem .5rem;
+  display: flex;
+  flex-direction: column;
+}
+.detail-container {
+  display: flex;
+  gap: 14px;
+}
 
 @keyframes slide-in {
   from {

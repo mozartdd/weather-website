@@ -8,6 +8,10 @@
   <body>
 
     <header>
+      <div id="hamburger-bar">
+        <p>C</p>
+        <p>F</p>
+      </div>
       <div id="header-left">
         <button id="hamburger" aria-label="Open menu" aria-expanded="false">
           <div aria-hidden="true"></div>
@@ -59,7 +63,7 @@
             </span>
             <span id="curr-temp" data-curr-temp>
               <p></p>
-              <p>°C</p>
+              <p></p>
             </span>
           </div>
           <div id="mid-rightw">
@@ -75,23 +79,37 @@
       </section>
 
       <section id="curr-details" data-curr-details>
-        <div>
-          <h3>Air Quality</h3>
-          <p class="detail-data" data-details></p>
+        <div class="first-curr-div">
+          <div class="detail-container">
+            <img src="./assets/air-conditioner-svgrepo-com.svg" alt="" width="20px">
+            <h3>
+              Air Quality
+            </h3>
+          </div>
+          <p class="detail-data" data-air></p>
         </div>
-        <div>
-          <h3>
-            Wind
-          </h3>
-          <p class="detail-data" data-details></p>
+        <div class="first-curr-div">
+          <div class="detail-container">
+            <img src="./assets/wind-svgrepo-com.svg" alt="" width="20px">
+            <h3>
+              Wind
+            </h3>
+          </div>
+          <p class="detail-data" data-wind></p>
         </div>
-        <div>
-          <h3>Humidity</h3>
-          <p class="detail-data" data-details></p>
+        <div class="first-curr-div">
+          <div class="detail-container">
+            <img src="./assets/humidity-svgrepo-com.svg" alt="" width="20px">
+            <h3>Humidity</h3>
+          </div>
+          <p class="detail-data" data-humid></p>
         </div>
-        <div>
-          <h3>Visibility</h3>
-          <p class="detail-data" data-details></p>
+        <div class="first-curr-div">
+          <div class="detail-container">
+            <img src="./assets/eye-svgrepo-com.svg" alt="" width="20px">
+            <h3>Visibility</h3>
+          </div>
+          <p class="detail-data" data-visibility></p>
         </div>
       </section>
 

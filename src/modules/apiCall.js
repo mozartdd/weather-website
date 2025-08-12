@@ -28,7 +28,12 @@ export async function getWeatherData(location) {
     conditions: current.conditions,
     feelsLikeF: current.feelslike,
     feelsLikeC: fahrenheitToCelsius(current.feelslike),
-    description: weatherData.description
+    description: weatherData.description,
+    cloudCover: current.cloudcover,
+    windM: current.windspeed,
+    windKm: milesToKm(current.windspeed),
+    humidity: current.humidity,
+    visibility: current.visibility
   };
 
   console.log(weatherData);
@@ -37,7 +42,11 @@ export async function getWeatherData(location) {
 
 function fahrenheitToCelsius(temp) {
   const celsius = ((temp - 32) * 5) / 9;
-  return Number(celsius.toFixed(1));
+  return Math.floor(celsius);
+}
+function milesToKm(miles) {
+  const km = miles * 1.60934;
+  return Math.floor(km);
 }
 
 // If hrs or minutes of time is smaller than 10 prefix it with 0
