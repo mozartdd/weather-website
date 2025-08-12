@@ -26,4 +26,27 @@ function displayCurrentWeather(data) {
   document.querySelector('[data-visibility]').textContent = data.visibility;
 }
 
+function createFutureWeatherCards() {
+  const futureContainer = document.querySelector('[data-future-cards]');
+  
+  for (let i = 0; i < 7; i++) {
+    const card = document.createElement('div');
+    const forecast = document.createElement('p');
+    const weather = document.createElement('p');
+    const wind = document.createElement('p');
+
+    card.classList.add('card');
+
+    forecast.classList.add('future-forecast');
+    weather.classList.add('future-weather');
+    wind.classList.add('future-wind');
+
+    futureContainer.appendChild(card);
+    card.appendChild(forecast);
+    card.appendChild(weather);
+    card.appendChild(wind);
+  }
+}
+
+createFutureWeatherCards();
 updateWeather(currentLocation);

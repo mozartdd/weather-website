@@ -8,12 +8,12 @@
   <body>
 
     <header>
-      <div id="hamburger-bar">
-        <p>C</p>
-        <p>F</p>
+      <div id="hamburger-bar" data-hb style="display: none;">
+        <button>C</button>
+        <button>F</button>
       </div>
       <div id="header-left">
-        <button id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <button id="hamburger" data-hamburger aria-label="Open menu" aria-expanded="false">
           <div aria-hidden="true"></div>
           <div aria-hidden="true"></div>
           <div aria-hidden="true"></div>
@@ -114,52 +114,11 @@
       </section>
 
       <section id="future-data" data-future>
-        <div class="day-select" data-day-select>
+        <div id="day-select" data-day-select>
           <p>Next Week</p>
         </div>
-        <div class="future-forcast" data-future-cards>
-          <div class="card">
-            <!-- <img src="" class="future-icon"> -->
-            <p class="future-forcast"></p>
-            <p class="future-temp"></p>
-            <p class="future-wind"></p>
-          </div>
-          <div class="card">
-            <!-- <img src="" class="future-icon"> -->
-            <p class="future-forcast"></p>
-            <p class="future-temp"></p>
-            <p class="future-wind"></p>
-          </div>
-          <div class="card">
-            <!-- <img src="" class="future-icon"> -->
-            <p class="future-forcast"></p>
-            <p class="future-temp"></p>
-            <p class="future-wind"></p>
-          </div>
-          <div class="card">
-            <!-- <img src="" class="future-icon"> -->
-            <p class="future-forcast"></p>
-            <p class="future-temp"></p>
-            <p class="future-wind"></p>
-          </div>
-          <div class="card">
-            <!-- <img src="" class="future-icon"> -->
-            <p class="future-forcast"></p>
-            <p class="future-temp"></p>
-            <p class="future-wind"></p>
-          </div>
-          <div class="card">
-            <!-- <img src="" class="future-icon"> -->
-            <p class="future-forcast"></p>
-            <p class="future-temp"></p>
-            <p class="future-wind"></p>
-          </div>
-          <div class="card">
-            <!-- <img src="" class="future-icon"> -->
-            <p class="future-forcast"></p>
-            <p class="future-temp"></p>
-            <p class="future-wind"></p>
-          </div>
+        <div id="future-forecast" data-future-cards>
+          
         </div>
       </section>
 
