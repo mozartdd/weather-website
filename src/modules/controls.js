@@ -1,24 +1,47 @@
-const headerEl = {
-  locationInput: document.querySelector('[data-location-input]'),
-  searchBtn: document.querySelector('[data-search-location]'),
+const locationInput = document.querySelector('[data-location-input]');
+const searchBtn = document.querySelector('[data-search-location]');
+const darkBtn = document.querySelector('[data-dark]');
+const lightBtn = document.querySelector('[data-light]');
+const dropdownBar = document.querySelector('[data-hb]');
+
+// Toggles element hidden and visible state
+function toggleHiddenState(element, bool = true) {
+  if (bool) {
+    element.classList.toggle('hidden');
+  } else {
+    element.style.display === 'flex'
+      ? (element.style.display = 'none')
+      : (element.style.display = 'flex');
+  }
 }
 
-function toggleBetweenStates(element1, element2) {
-  document.querySelector(element1).classList.toggle('hidden');
-  document.querySelector(element2).classList.toggle('hidden');
-}
-function toggleDisplayState(element) {
-  const el = document.querySelector(element);
-  el.style.display === 'flex' ? el.style.display = 'none' : el.style.display = 'flex';
-}
+// Event delegation for header element
+function headerEventDelegation() {
+  const header = document.querySelector('header');
 
-document.querySelectorAll('.theme-btn')
-  .forEach((btn) => {
-    btn.addEventListener('click', () => {
-      toggleBetweenStates('[data-light]', '[data-dark]')
-    });
-});
-document.querySelector('[data-hamburger]')
-  .addEventListener('click', () => {
-    toggleDisplayState('[data-hb]');
+  header.addEventListener('click', (event) => {
+    const target = event.target;
+
+    if (target.closest('[data-light]') || target.closest('[data-dark]')) {
+      toggleHiddenState(lightBtn);
+      toggleHiddenState(darkBtn);
+    } else if (target.closest('[data-hamburger]')) {
+      toggleHiddenState(dropdownBar, false);
+    }
   });
+}
+
+// Closes hamburger bar if it is open and click event happens any where else on page
+function closeHamburgerBar() {
+  window.addEventListener('click', (event) => {
+    if (
+      !event.target.closest('[data-hamburger]') &&
+      !event.target.closest('[data-hb]')
+    ) {
+      dropdownBar.style.display = 'none';
+    }
+  });
+}
+
+closeHamburgerBar();
+headerEventDelegation();

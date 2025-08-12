@@ -1,4 +1,4 @@
-const { DateTime } = require("luxon");
+const { DateTime } = require('luxon');
 
 // Fetches weather api from visual crossing website
 export async function getWeatherPromise(location) {
@@ -33,7 +33,7 @@ export async function getWeatherData(location) {
     windM: current.windspeed,
     windKm: milesToKm(current.windspeed),
     humidity: current.humidity,
-    visibility: current.visibility
+    visibility: current.visibility,
   };
 
   console.log(weatherData);
@@ -56,4 +56,3 @@ function getCurrentTime(location) {
   let minute = timeData.minute < 10 ? '0' + timeData.minute : timeData.minute;
   return hour + ':' + minute;
 }
-
