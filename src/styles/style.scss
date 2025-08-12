@@ -273,8 +273,8 @@ h2 {
   overflow: scroll;
 
   .card {
-    height: 6rem;
-    min-width: 6rem;
+    min-height: 10rem;
+    min-width: 8rem;
     border: $header-comp-borders;
 
     background-color: $light-dash-bg;

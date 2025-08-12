@@ -47,5 +47,6 @@ function closeHamburgerBar() {
   });
 }
 
+updateWeather('London UK');
 closeHamburgerBar();
 headerEventDelegation();

@@ -1,10 +1,12 @@
 import * as api from './apiCall.js';
+const DAYS_IN_WEEK = 7;
 
  export async function updateWeather(location) {
   try {
     const data = await api.getWeatherData(location);
 
     displayCurrentWeather(data);
+    displayFutureWeather(location);
   } catch (error) {
     document.querySelector('[data-location]').textContent = 'Could not find this Location.'
     console.error('Error fetching weather details:', error);
@@ -24,22 +26,37 @@ function displayCurrentWeather(data) {
   document.querySelector('[data-visibility]').textContent = data.visibility;
 }
 
+async function displayFutureWeather(location) {
+  for (let i = 0; i < DAYS_IN_WEEK; i++) {
+    const futureData = await api.getFutureWeatherData(location, i);
+
+    document.querySelector(`[data="${i}"] .weather-icon`).textContent = 'ICON';
+    document.querySelector(`[data="${i}"] .future-forecast`).textContent = futureData.futureConditions;
+    document.querySelector(`[data="${i}"] .future-weather`).textContent = futureData.futureTempC;
+    document.querySelector(`[data="${i}"] .future-wind`).textContent = futureData.futureWindKm;
+  }
+}
+
 function createFutureWeatherCards() {
   const futureContainer = document.querySelector('[data-future-cards]');
 
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < DAYS_IN_WEEK; i++) {
     const card = document.createElement('div');
     const forecast = document.createElement('p');
     const weather = document.createElement('p');
     const wind = document.createElement('p');
+    const icon = document.createElement('img');
 
     card.classList.add('card');
+    card.setAttribute('data', `${i}`);
 
+    icon.classList.add('weather-icon');
     forecast.classList.add('future-forecast');
     weather.classList.add('future-weather');
     wind.classList.add('future-wind');
 
     futureContainer.appendChild(card);
+    card.appendChild(icon);
     card.appendChild(forecast);
     card.appendChild(weather);
     card.appendChild(wind);

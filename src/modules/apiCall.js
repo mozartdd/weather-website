@@ -18,7 +18,6 @@ export async function getWeatherPromise(location) {
 export async function getWeatherData(location) {
   const weatherData = await getWeatherPromise(location);
   const current = weatherData.currentConditions;
-  const future = weatherData.days;
 
   const dataObject = {
     address: weatherData.resolvedAddress,
@@ -35,10 +34,25 @@ export async function getWeatherData(location) {
     humidity: current.humidity,
     visibility: current.visibility,
   };
-
-  console.log(weatherData);
+  
   return dataObject;
 }
+
+export async function getFutureWeatherData(location, idx) {
+  const weatherData = await getWeatherPromise(location);
+  const future = weatherData.days;
+
+  const futureDataObj = {
+    futureConditions: future[idx].conditions,
+    futureTempC: fahrenheitToCelsius(future[idx].temp),
+    futureTempF: future[idx].temp,
+    futureWindM: future[idx].windspeed,
+    futureWindKm: milesToKm(future[idx].windspeed)  
+  }
+
+  return futureDataObj;
+}
+
 
 function fahrenheitToCelsius(temp) {
   const celsius = ((temp - 32) * 5) / 9;
