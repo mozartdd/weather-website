@@ -14,7 +14,8 @@ const mainEl = {
   currentTemp: document.querySelector('[data-curr-temp] p:first-child'),
   currForecast: document.querySelector('[data-curr-forecast]'),
   feelsLike: document.querySelector('[data-feels-like]'),
-  description: document.querySelector('[data-description]')
+  description: document.querySelector('[data-description]'),
+  location: document.querySelector('[data-location')
 }
 
 function toggleBetweenStates() {
@@ -34,6 +35,7 @@ async function displayCurrentData(location) {
   mainEl.currForecast.textContent = data.conditions;
   mainEl.feelsLike.textContent += data.feelsLikeC;
   mainEl.description.textContent = data.description;
+  mainEl.location.textContent = data.address;
 }
 
-displayCurrentData('moscow');
+displayCurrentData('Grimsby, UK');

@@ -25,17 +25,17 @@
         </button>
         <label for="location-search"></label>
         <input type="text" id="location-search" name="location-input" placeholder="Search location" data-location-input>
-        <button class="location-btn" id="geolocation-btn" aria-label="Auto find location">
+        <button class="location-btn" id="geolocation-btn">
             <img aria-hidden="true" src="./assets/geolocation-svgrepo-com.svg" width="20">
         </button>
       </div>
-      <button data-light class="theme-btn hidden" id="light-theme" aria-hidden="true" tabindex="-1">
+      <button data-light class="theme-btn hidden" id="light-theme" aria-label="Light mode is on">
         <div class="sliding-light">
           <img aria-hidden="true" src="./assets/sunny-svgrepo-com.svg" width="20">
           <p>Light</p>
         </div>
       </button>
-      <button data-dark class="theme-btn" id="dark-theme" aria-hidden="true" tabindex="-1">
+      <button data-dark class="theme-btn" id="dark-theme" aria-label="Dark mode is on">
         <div class="sliding-dark">
           <img aria-hidden="true" src="./assets/moon-stars-svgrepo-com.svg" width="20">
           <p>Dark</p>
@@ -44,13 +44,13 @@
     </header>
 
     <main>
-      <section id="curr-weather" data-current-weather tabindex="0" aria-label="Current weather section">
+      <h1 id="locaiton" data-location></h1>
+      <section id="curr-weather" data-current-weather>
         <div id="top" aria-hidden="true">
-          <h1 tabindex="0">
+          <h2>
             Current Weather
-          </h1>
-          <p aria-label="current time" tabindex="0" role="region"></p>
-          <p id="time" data-time tabindex="0" role="region"></p>
+          </h2>
+          <p id="time" data-time>02:50</p>
         </div>
         <div id="middle">
           <div id="mid-left">
@@ -58,9 +58,8 @@
               ICON
             </span>
             <span id="curr-temp" data-curr-temp>
-              <p aria-labelledby="curr-temp" tabindex="0" role="region"></p>
-              <p id="curr-temp" aria-label="Current temp"></p>
-              <p id="curr-symbol">°C</p>
+              <p></p>
+              <p>°C</p>
             </span>
           </div>
           <div id="mid-rightw">
@@ -69,29 +68,29 @@
           </div>
         </div>
         <div id="bottom">
-          <p data-description tabindex="0" role="region">
-            
+          <p data-description>
+            Mostly sunny day
           </p>
         </div>
       </section>
 
       <section id="curr-details" data-curr-details>
         <div>
-          <h2>Air Quality</h2>
+          <h3>Air Quality</h3>
           <p class="detail-data" data-details></p>
         </div>
         <div>
-          <h2>
+          <h3>
             Wind
-          </h2>
+          </h3>
           <p class="detail-data" data-details></p>
         </div>
         <div>
-          <h2>Humidity</h2>
+          <h3>Humidity</h3>
           <p class="detail-data" data-details></p>
         </div>
         <div>
-          <h2>Visibility</h2>
+          <h3>Visibility</h3>
           <p class="detail-data" data-details></p>
         </div>
       </section>
