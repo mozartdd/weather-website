@@ -1,3 +1,5 @@
+import {updateWeather} from './uiChanges.js';
+
 const locationInput = document.querySelector('[data-location-input]');
 const searchBtn = document.querySelector('[data-search-location]');
 const darkBtn = document.querySelector('[data-dark]');
@@ -27,7 +29,9 @@ function headerEventDelegation() {
       toggleHiddenState(darkBtn);
     } else if (target.closest('[data-hamburger]')) {
       toggleHiddenState(dropdownBar, false);
-    }
+    } else if (target.closest('[data-search-location]')) {
+      updateWeather(locationInput.value);
+    };
   });
 }
 
