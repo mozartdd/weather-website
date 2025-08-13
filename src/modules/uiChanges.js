@@ -118,15 +118,15 @@ function futureWindSpeed(data) {
 
 function returnCorrectWeatherIcon(icon) {
   const icons = {
-    'clear-day': require('../assets/weather-icons/clear-day.svg'),
-    'clear-night': require('../assets/weather-icons/clear-night.svg'),
-    'partly-cloudy-night': require('../assets/weather-icons/partly-cloudy-night.svg'),
-    'partly-cloudy-day': require('../assets/weather-icons/partly-cloudy-day.svg'),
-    'cloudy': require('../assets/weather-icons/cloudy.svg'),
-    'wind': require('../assets/weather-icons/wind.svg'),
-    'fog': require('../assets/weather-icons/fog.svg'),
-    'rain': require('../assets/weather-icons/rain.svg'),
-    'snow': require('../assets/weather-icons/snow.svg'),
+    'clear-day': require('../assets/clear-day.svg'),
+    'clear-night': require('../assets/clear-night.svg'),
+    'partly-cloudy-night': require('../assets/partly-cloudy-night.svg'),
+    'partly-cloudy-day': require('../assets/partly-cloudy-day.svg'),
+    'cloudy': require('../assets/cloudy.svg'),
+    'wind': require('../assets/wind.svg'),
+    'fog': require('../assets/fog.svg'),
+    'rain': require('../assets/rain.svg'),
+    'snow': require('../assets/snow.svg'),
   }
 
   return icons[icon] || icons['partly-cloudy-day'];
