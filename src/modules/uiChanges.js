@@ -57,6 +57,7 @@ export function createFutureWeatherCards() {
 
     day.classList.add('future-day');
     icon.classList.add('weather-icon');
+    icon.setAttribute('aria-hidden', 'true');
     forecast.classList.add('future-forecast');
     weather.classList.add('future-weather');
     wind.classList.add('future-wind');

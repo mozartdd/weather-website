@@ -8,14 +8,14 @@
   <body>
     <header>
       <div id="dropdown" data-hb>
-        <button data-c class="active">C</button>
-        <button data-f class="inactive">F</button>
+        <button data-c class="active" aria-label="Metric system">C</button>
+        <button data-f class="inactive" aria-label="Imperial system">F</button>
       </div>
       <div id="header-left">
         <button
           id="hamburger"
           data-hamburger
-          aria-label="Open menu"
+          aria-label="Choose measurement system"
           aria-expanded="false"
         >
           <div aria-hidden="true"></div>
@@ -25,7 +25,7 @@
 
         <div id="logo" aria-hidden="true" class="hidden">SkyBlue</div>
       </div>
-      <div aria-hidden="true" id="header-right">
+      <div id="header-right">
         <button
           class="location-btn"
           id="search-location-btn"
@@ -84,11 +84,11 @@
       <section id="curr-weather" data-current-weather>
         <div id="top" aria-hidden="true">
           <h2>Current Weather</h2>
-          <p id="time" data-time>02:50</p>
+          <p id="time" data-time></p>
         </div>
         <div id="middle">
           <div id="mid-left">
-            <img id="current-icon" data-curr-icon width="85px"></img>
+            <img id="current-icon" data-curr-icon width="85px" aria-hidden="true"></img>
             <span id="curr-temp" data-curr-temp>
               <p></p>
               <p></p>
@@ -148,6 +148,7 @@
       <section id="sun-details" data-sunrise>
         <div id="sunrise" data-sunrise>
           <img
+            aria-hidden="true"
             src="./assets/sunrise.svg"
             aria-hidden="true"
             width="80px"
@@ -158,6 +159,7 @@
         </div>
         <div id="sunset">
           <img
+            aria-hidden="true"
             src="./assets/sunset.svg"
             aria-hidden="true"
             width="80px"
