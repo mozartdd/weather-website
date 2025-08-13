@@ -119,17 +119,6 @@ header {
   border-bottom-left-radius: $small-radius;
   border-top-left-radius: $small-radius;
 }
-#geolocation-btn {
-  @include default-btn;
-  @include input-btn;
-
-  right: $input-position;
-  border-bottom-right-radius: $small-radius;
-  border-top-right-radius: $small-radius;
-  border-right: $header-comp-borders;
-
-  background-color: $light-bg;
-}
 
 .location-btn {
   img {
@@ -144,8 +133,9 @@ input {
   background-color: $light-dash-bg;
   max-width: 150px;
   border-left: none;
-  border-right: none;
   border: $header-comp-borders;
+  border-top-right-radius: $small-radius;
+  border-bottom-right-radius: $small-radius;
 }
 
 .theme-btn {
@@ -266,6 +256,10 @@ h2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: $small-padding;
+}
+
+h3 {
+  font-weight: 400;
 }
 
 .first-curr-div {
