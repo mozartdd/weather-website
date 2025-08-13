@@ -34,7 +34,7 @@ export async function getWeatherData(location) {
     humidity: current.humidity,
     visibility: current.visibility,
   };
-  
+
   return dataObject;
 }
 
@@ -47,20 +47,19 @@ export async function getFutureWeatherData(location, idx) {
     futureTempC: fahrenheitToCelsius(future[idx].temp),
     futureTempF: future[idx].temp,
     futureWindM: future[idx].windspeed,
-    futureWindKm: milesToKm(future[idx].windspeed)  
-  }
+    futureWindKm: milesToKm(future[idx].windspeed),
+    futureDay: future[idx].datetime,
+  };
 
+  console.log(weatherData);
   return futureDataObj;
 }
 
-
-function fahrenheitToCelsius(temp) {
-  const celsius = ((temp - 32) * 5) / 9;
-  return Math.floor(celsius);
+export function fahrenheitToCelsius(temp) {
+  return Math.round(((temp - 32) * 5) / 9);
 }
-function milesToKm(miles) {
-  const km = miles * 1.60934;
-  return Math.floor(km);
+export function milesToKm(miles) {
+  return Math.round(miles * 1.60934);
 }
 
 // If hrs or minutes of time is smaller than 10 prefix it with 0
