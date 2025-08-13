@@ -1,7 +1,7 @@
-import { updateWeather } from './uiChanges.js';
+import { updateWeather, createFutureWeatherCards } from './uiChanges.js';
+let notImperial = true;
 
 const locationInput = document.querySelector('[data-location-input]');
-const searchBtn = document.querySelector('[data-search-location]');
 const darkBtn = document.querySelector('[data-dark]');
 const lightBtn = document.querySelector('[data-light]');
 const dropdownBar = document.querySelector('[data-hb]');
@@ -47,6 +47,33 @@ function closeHamburgerBar() {
   });
 }
 
-updateWeather('London UK');
+function changeActiveDegree() {
+  const celsius = document.querySelector('[data-c]');
+  const fahrenheit = document.querySelector('[data-f]');
+
+  celsius.addEventListener('click', () => {
+      notImperial = true;
+      toggleActiveClassLists(celsius, fahrenheit);
+    });
+  fahrenheit.addEventListener('click', () => {
+      notImperial = false;
+      toggleActiveClassLists(fahrenheit, celsius);
+    });
+}
+
+function toggleActiveClassLists(active, inactive) {
+  active.classList.add('active');
+  active.classList.remove('inactive');
+  inactive.classList.add('inactive');
+  inactive.classList.remove('active');
+  !locationInput.value ? updateWeather('London, England') : updateWeather(locationInput.value);
+}
+
+export function currentMeasurement() {
+  return notImperial;
+}
+
+changeActiveDegree();
+updateWeather('London, England');
 closeHamburgerBar();
 headerEventDelegation();

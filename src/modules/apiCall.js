@@ -1,8 +1,9 @@
 const { DateTime } = require('luxon');
+const dayjs = require('dayjs');
 
 // Fetches weather api from visual crossing website
 export async function getWeatherPromise(location) {
-  const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=DUX8WLQUANH4ZKTHFG32ZK63L`;
+  const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=EWTMF5AFJGDJLKEQ4SE36PV85`;
 
   try {
     const result = await fetch(url);
@@ -33,6 +34,8 @@ export async function getWeatherData(location) {
     windKm: milesToKm(current.windspeed),
     humidity: current.humidity,
     visibility: current.visibility,
+    sunRise: getCurrentTime(current.sunrise),
+    sunSet: getCurrentTime(current.sunset),
   };
 
   return dataObject;
@@ -48,10 +51,8 @@ export async function getFutureWeatherData(location, idx) {
     futureTempF: future[idx].temp,
     futureWindM: future[idx].windspeed,
     futureWindKm: milesToKm(future[idx].windspeed),
-    futureDay: future[idx].datetime,
+    futureDay: DateTime.fromISO(future[idx].datetime).toFormat('LLL dd')
   };
-
-  console.log(weatherData);
   return futureDataObj;
 }
 
@@ -69,3 +70,5 @@ function getCurrentTime(location) {
   let minute = timeData.minute < 10 ? '0' + timeData.minute : timeData.minute;
   return hour + ':' + minute;
 }
+
+// console.log(dayjs().add(1, 'day').subtract(1, 'year').year(2009).toString());

@@ -48,7 +48,7 @@ header {
   display: none;
 }
 
-#hamburger-bar {
+#dropdown {
   position: absolute;
   background-color: $light-dash-bg;
   border-bottom-left-radius: $small-radius;
@@ -65,6 +65,15 @@ header {
 
   transform-origin: top;
   animation: drop-down 0.6s alternate;
+
+  button {
+    border-radius: $small-radius;
+    font-weight: bold;
+  }
+}
+.active {
+  background-color: $sky-blue;
+  color: white;
 }
 
 #header-left {

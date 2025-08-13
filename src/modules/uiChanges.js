@@ -1,5 +1,7 @@
 import * as api from './apiCall.js';
+import * as controls from './controls.js';
 const DAYS_IN_WEEK = 7;
+const STARTING_IDX = 1;
 
 export async function updateWeather(location) {
   try {
@@ -14,41 +16,26 @@ export async function updateWeather(location) {
   }
 }
 
+// Displays current weather data on webpage
 function displayCurrentWeather(data) {
   document.querySelector('[data-time]').textContent = data.currentTime;
-  document.querySelector('[data-curr-temp] p:first-child').textContent =
-    data.tempC;
+  document.querySelector('[data-curr-temp] p:first-child').textContent = postfixElementDegree(data);
   document.querySelector('[data-curr-forecast]').textContent = data.conditions;
   document.querySelector('[data-feels-like]').textContent =
-    'Feels like ' + data.feelsLikeC;
+    'Feels like ' + postfixElementDegree(data)
   document.querySelector('[data-description]').textContent = data.description;
   document.querySelector('[data-location]').textContent = data.address;
   document.querySelector('[data-air]').textContent = data.cloudCover + 'AQI';
-  document.querySelector('[data-wind]').textContent = data.windKm;
+  document.querySelector('[data-wind]').textContent = postfixElementSpeed(data);
   document.querySelector('[data-humid]').textContent = data.humidity + '%';
-  document.querySelector('[data-visibility]').textContent = data.visibility;
+  document.querySelector('[data-visibility]').textContent = postfixElementWithDistance(data);
 }
 
-async function displayFutureWeather(location) {
-  for (let i = 1; i < DAYS_IN_WEEK + 1; i++) {
-    const futureData = await api.getFutureWeatherData(location, i);
-
-    document.querySelector(`[data="${i}"] .future-day`).textContent =
-      futureData.futureDay;
-    document.querySelector(`[data="${i}"] .weather-icon`).textContent = 'ICON';
-    document.querySelector(`[data="${i}"] .future-forecast`).textContent =
-      futureData.futureConditions;
-    document.querySelector(`[data="${i}"] .future-weather`).textContent =
-      futureData.futureTempC;
-    document.querySelector(`[data="${i}"] .future-wind`).textContent =
-      futureData.futureWindKm;
-  }
-}
-
-function createFutureWeatherCards() {
+// Creates html elements for each day in future weather forecast
+export function createFutureWeatherCards() {
   const futureContainer = document.querySelector('[data-future-cards]');
 
-  for (let i = 1; i < DAYS_IN_WEEK + 1; i++) {
+  for (let i = STARTING_IDX; i < DAYS_IN_WEEK + 1; i++) {
     const card = document.createElement('div');
     const forecast = document.createElement('p');
     const weather = document.createElement('p');
@@ -72,6 +59,45 @@ function createFutureWeatherCards() {
     card.appendChild(weather);
     card.appendChild(wind);
   }
+}
+
+// Adds content to future weather day cards
+async function displayFutureWeather(location) {
+  for (let i = STARTING_IDX; i < DAYS_IN_WEEK + 1; i++) {
+    const futureData = await api.getFutureWeatherData(location, i);
+
+    i === STARTING_IDX
+    ? document.querySelector(`[data="${i}"] .future-day`).textContent =
+      'Tomorrow'
+    : document.querySelector(`[data="${i}"] .future-day`).textContent =
+      futureData.futureDay;
+    document.querySelector(`[data="${i}"] .weather-icon`).textContent = 'ICON';
+    document.querySelector(`[data="${i}"] .future-forecast`).textContent =
+      futureData.futureConditions;
+    document.querySelector(`[data="${i}"] .future-weather`).textContent = futureTempPostfix(futureData);
+    document.querySelector(`[data="${i}"] .future-wind`).textContent =  futureWindSpeed(futureData)
+  }
+}
+
+function postfixElementSpeed(data) {
+  const notImperial = controls.currentMeasurement();
+  return notImperial ? data.windKm + ' Km/ph' : data.windM + ' M/ph';
+}
+function postfixElementDegree(data) {
+  const notImperial = controls.currentMeasurement();
+  return notImperial ? data.tempC + '°C' : data.tempF + '°F';
+}
+function postfixElementWithDistance(data) {
+  const notImperial = controls.currentMeasurement();
+  return notImperial ? data.visibility + ' Km' : data.visibility + ' Miles';
+}
+function futureTempPostfix(data) {
+  const notImperial = controls.currentMeasurement();
+  return notImperial ? data.futureTempC + '°C' : data.futureTempF + '°F';
+}
+function futureWindSpeed(data) {
+  const notImperial = controls.currentMeasurement();
+  return notImperial ? data.futureWindKm + ' Km/ph' : data.futureWindM + ' M/ph';
 }
 
 createFutureWeatherCards();
