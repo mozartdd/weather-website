@@ -1,5 +1,6 @@
 import * as api from './apiCall.js';
 import * as controls from './controls.js';
+
 const DAYS_IN_WEEK = 7;
 const STARTING_IDX = 1;
 
@@ -18,17 +19,25 @@ export async function updateWeather(location) {
 
 // Displays current weather data on webpage
 function displayCurrentWeather(data) {
+  const icon = returnCorrectWeatherIcon(data.icon);
+  console.log(icon);
+
+  document.querySelector('[data-curr-icon]').setAttribute('src', icon);
   document.querySelector('[data-time]').textContent = data.currentTime;
-  document.querySelector('[data-curr-temp] p:first-child').textContent = postfixElementDegree(data);
+  document.querySelector('[data-curr-temp] p:first-child').textContent =
+    postfixElementDegree(data);
   document.querySelector('[data-curr-forecast]').textContent = data.conditions;
   document.querySelector('[data-feels-like]').textContent =
-    'Feels like ' + postfixElementDegree(data)
+    'Feels like ' + postfixElementDegree(data);
   document.querySelector('[data-description]').textContent = data.description;
   document.querySelector('[data-location]').textContent = data.address;
   document.querySelector('[data-air]').textContent = data.cloudCover + 'AQI';
   document.querySelector('[data-wind]').textContent = postfixElementSpeed(data);
   document.querySelector('[data-humid]').textContent = data.humidity + '%';
-  document.querySelector('[data-visibility]').textContent = postfixElementWithDistance(data);
+  document.querySelector('[data-visibility]').textContent =
+    postfixElementWithDistance(data);
+  document.querySelector('[data-sunrise-time]').textContent = data.sunrise;
+  document.querySelector('[data-sunset-time]').textContent = data.sunset;
 }
 
 // Creates html elements for each day in future weather forecast
@@ -63,19 +72,24 @@ export function createFutureWeatherCards() {
 
 // Adds content to future weather day cards
 async function displayFutureWeather(location) {
+
   for (let i = STARTING_IDX; i < DAYS_IN_WEEK + 1; i++) {
-    const futureData = await api.getFutureWeatherData(location, i);
+    const f = await api.getFutureWeatherData(location, i);
+    let icon = returnCorrectWeatherIcon(f.icon);
 
     i === STARTING_IDX
-    ? document.querySelector(`[data="${i}"] .future-day`).textContent =
-      'Tomorrow'
-    : document.querySelector(`[data="${i}"] .future-day`).textContent =
-      futureData.futureDay;
+      ? (document.querySelector(`[data="${i}"] .future-day`).textContent =
+          'Tomorrow')
+      : (document.querySelector(`[data="${i}"] .future-day`).textContent =
+          f.fDay);
     document.querySelector(`[data="${i}"] .weather-icon`).textContent = 'ICON';
     document.querySelector(`[data="${i}"] .future-forecast`).textContent =
-      futureData.futureConditions;
-    document.querySelector(`[data="${i}"] .future-weather`).textContent = futureTempPostfix(futureData);
-    document.querySelector(`[data="${i}"] .future-wind`).textContent =  futureWindSpeed(futureData)
+      f.fConditions;
+    document.querySelector(`[data="${i}"] .future-weather`).textContent =
+      futureTempPostfix(f);
+    document.querySelector(`[data="${i}"] .future-wind`).textContent =
+      futureWindSpeed(f);
+      document.querySelector(`[data="${i}"] .weather-icon`).setAttribute('src', icon);
   }
 }
 
@@ -93,11 +107,29 @@ function postfixElementWithDistance(data) {
 }
 function futureTempPostfix(data) {
   const notImperial = controls.currentMeasurement();
-  return notImperial ? data.futureTempC + '°C' : data.futureTempF + '°F';
+  return notImperial ? data.fTempC + '°C' : data.fTempF + '°F';
 }
 function futureWindSpeed(data) {
   const notImperial = controls.currentMeasurement();
-  return notImperial ? data.futureWindKm + ' Km/ph' : data.futureWindM + ' M/ph';
+  return notImperial
+    ? data.fWindKm + ' Km/ph'
+    : data.fWindM + ' M/ph';
+}
+
+function returnCorrectWeatherIcon(icon) {
+  const icons = {
+    'clear-day': require('../assets/weather-icons/design/fill/final/clear-day.svg'),
+    'clear-night': require('../assets/weather-icons/design/fill/final/clear-night.svg'),
+    'partly-cloudy-night': require('../assets/weather-icons/design/fill/final/partly-cloudy-night.svg'),
+    'partly-cloudy-day': require('../assets/weather-icons/design/fill/final/partly-cloudy-day.svg'),
+    'cloudy': require('../assets/weather-icons/design/fill/final/cloudy.svg'),
+    'wind': require('../assets/weather-icons/design/fill/final/wind.svg'),
+    'fog': require('../assets/weather-icons/design/fill/final/fog.svg'),
+    'rain': require('../assets/weather-icons/design/fill/final/rain.svg'),
+    'snow': require('../assets/weather-icons/design/fill/final/snow.svg'),
+  }
+
+  return icons[icon] || icons['partly-cloudy-day'];
 }
 
 createFutureWeatherCards();

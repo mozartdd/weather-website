@@ -52,13 +52,13 @@ function changeActiveDegree() {
   const fahrenheit = document.querySelector('[data-f]');
 
   celsius.addEventListener('click', () => {
-      notImperial = true;
-      toggleActiveClassLists(celsius, fahrenheit);
-    });
+    notImperial = true;
+    toggleActiveClassLists(celsius, fahrenheit);
+  });
   fahrenheit.addEventListener('click', () => {
-      notImperial = false;
-      toggleActiveClassLists(fahrenheit, celsius);
-    });
+    notImperial = false;
+    toggleActiveClassLists(fahrenheit, celsius);
+  });
 }
 
 function toggleActiveClassLists(active, inactive) {
@@ -66,7 +66,9 @@ function toggleActiveClassLists(active, inactive) {
   active.classList.remove('inactive');
   inactive.classList.add('inactive');
   inactive.classList.remove('active');
-  !locationInput.value ? updateWeather('London, England') : updateWeather(locationInput.value);
+  !locationInput.value
+    ? updateWeather('London, England')
+    : updateWeather(locationInput.value);
 }
 
 export function currentMeasurement() {

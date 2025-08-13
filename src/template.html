@@ -95,7 +95,7 @@
         </div>
         <div id="middle">
           <div id="mid-left">
-            <span id="current-icon" data-curr-icon> ICON </span>
+            <img id="current-icon" data-curr-icon width="85px"></img>
             <span id="curr-temp" data-curr-temp>
               <p></p>
               <p></p>
@@ -151,8 +151,28 @@
         <div id="future-forecast" data-future-cards></div>
       </section>
 
+      <p id="sun-p">Sunset & Sunrise Summary</p>
       <section id="sun-details" data-sunrise>
-        <p>Sunset & Sunrise Summary</p>
+        <div id="sunrise" data-sunrise>
+          <img
+            src="./assets/weather-icons/design/fill/final/sunrise.svg"
+            aria-hidden="true"
+            width="80px"
+            data-sunrise-img
+          />
+          <p>Sunrise</p>
+          <p data-sunrise-time></p>
+        </div>
+        <div id="sunset">
+          <img
+            src="./assets/weather-icons/design/fill/final/sunset.svg"
+            aria-hidden="true"
+            width="80px"
+            data-sunset-img
+          />
+          <p>Sunset</p>
+          <p data-sunset-time></p>
+        </div>
       </section>
     </main>
   </body>
