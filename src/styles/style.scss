@@ -40,8 +40,19 @@ $shadow: 0px 0px 25px rgb(196, 194, 194);
 
 // HEADER STYLING
 
+body {
+  background-color: $light-bg;
+  color: rgb(4, 4, 94);
+}
+body.dark {
+  color: $light-bg;
+  background-color: $sky-blue;
+}
+
+
 header {
-  @include flex-and-bg;
+  background-color: $light-dash-bg;
+  display: flex;
   position: static;
 
   align-items: center;
@@ -114,11 +125,13 @@ header {
 #search-location-btn {
   @include default-btn;
   @include input-btn;
+  border: none;
 
-  left: $input-position;
-  border-left: $header-comp-borders;
-  border-bottom-left-radius: $small-radius;
-  border-top-left-radius: $small-radius;
+  right: 0px;
+  top: 2px;
+  border-right: $header-comp-borders;
+  border-top-right-radius: $small-radius;
+  border-bottom-right-radius: $small-radius;
 }
 
 .location-btn {
@@ -132,11 +145,10 @@ header {
 
 input {
   background-color: $light-dash-bg;
-  max-width: 150px;
-  border-left: none;
+  max-width: 250px;
+
   border: $header-comp-borders;
-  border-top-right-radius: $small-radius;
-  border-bottom-right-radius: $small-radius;
+  border-radius: $small-radius;
 }
 
 .theme-btn {

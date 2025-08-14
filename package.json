@@ -4,10 +4,10 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "serve": "webpack serve --open --config ./webpack.dev.js",
+    "serve": "webpack serve --open --config ./configs/webpack.dev.js",
     "clean": "npx prettier . --write",
-    "build": "webpack --config ./webpack.prod.js",
-    "dev": "webpack serve --open --config ./webpack.dev.js"
+    "build": "webpack --config ./configs/webpack.prod.js",
+    "dev": "webpack serve --open --config ./configs/webpack.dev.js"
   },
   "repository": {
     "type": "git",

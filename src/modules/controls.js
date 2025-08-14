@@ -5,16 +5,23 @@ const locationInput = document.querySelector('[data-location-input]');
 const darkBtn = document.querySelector('[data-dark]');
 const lightBtn = document.querySelector('[data-light]');
 const dropdownBar = document.querySelector('[data-hb]');
+const lightElements = document.querySelectorAll('.light');
 
 // Toggles element hidden and visible state
-function toggleHiddenState(element, bool = true) {
+function toggleElement(element, classList,  bool = true) {
   if (bool) {
-    element.classList.toggle('hidden');
+    element.classList.toggle(classList);
   } else {
     element.style.display === 'flex'
       ? (element.style.display = 'none')
       : (element.style.display = 'flex');
   }
+}
+
+function toggleDisplayTheme() {
+  lightElements.forEach((el) => {
+    el.classList.toggle('dark');
+  });
 }
 
 // Event delegation for header element
@@ -25,10 +32,11 @@ function headerEventDelegation() {
     const target = event.target;
 
     if (target.closest('[data-light]') || target.closest('[data-dark]')) {
-      toggleHiddenState(lightBtn);
-      toggleHiddenState(darkBtn);
+      toggleElement(lightBtn, 'hidden');
+      toggleElement(darkBtn, 'hidden');
+      toggleDisplayTheme();
     } else if (target.closest('[data-hamburger]')) {
-      toggleHiddenState(dropdownBar, false);
+      toggleElement(dropdownBar, false);
     } else if (target.closest('[data-search-location]')) {
       updateWeather(locationInput.value);
     }
@@ -74,6 +82,8 @@ function toggleActiveClassLists(active, inactive) {
 export function currentMeasurement() {
   return notImperial;
 }
+
+
 
 changeActiveDegree();
 updateWeather('London, England');

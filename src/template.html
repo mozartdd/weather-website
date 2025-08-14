@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body>
-    <header>
+  <body class="light">
+    <header class="light">
       <div id="dropdown" data-hb>
         <button data-c class="active" aria-label="Metric system">C</button>
         <button data-f class="inactive" aria-label="Imperial system">F</button>
@@ -26,6 +26,14 @@
         <div id="logo" aria-hidden="true" class="hidden">SkyBlue</div>
       </div>
       <div id="header-right">
+        <label for="location-search"></label>
+        <input
+          type="text"
+          id="location-search"
+          name="location-input"
+          placeholder="Search location"
+          data-location-input
+        />
         <button
           class="location-btn"
           id="search-location-btn"
@@ -38,14 +46,6 @@
             width="20"
           />
         </button>
-        <label for="location-search"></label>
-        <input
-          type="text"
-          id="location-search"
-          name="location-input"
-          placeholder="Search location"
-          data-location-input
-        />
       </div>
       <button
         data-light
