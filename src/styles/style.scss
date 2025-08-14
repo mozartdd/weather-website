@@ -61,8 +61,8 @@ header {
   border-bottom-right-radius: $small-radius;
   top: 45px;
   left: 0px;
-  height: 45px;
-  width: 75px;
+  height: 55px;
+  width: 85px;
   border: $header-comp-borders;
   border-top: 1px solid rgb(192, 168, 168);
   justify-content: space-between;
@@ -75,6 +75,7 @@ header {
   button {
     border-radius: $small-radius;
     font-weight: bold;
+    width: 2rem;
   }
 }
 .active {
