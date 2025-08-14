@@ -1,4 +1,4 @@
-import { updateWeather, createFutureWeatherCards } from './uiChanges.js';
+import { updateWeather } from './uiChanges.js';
 let notImperial = true;
 
 const locationInput = document.querySelector('[data-location-input]');
@@ -8,9 +8,9 @@ const dropdownBar = document.querySelector('[data-hb]');
 const lightElements = document.querySelectorAll('.light');
 
 // Toggles element hidden and visible state
-function toggleElement(element, classList,  bool = true) {
+function toggleElement(element, attribute,  bool = true) {
   if (bool) {
-    element.classList.toggle(classList);
+    element.classList.toggle(attribute);
   } else {
     element.style.display === 'flex'
       ? (element.style.display = 'none')
@@ -36,7 +36,7 @@ function headerEventDelegation() {
       toggleElement(darkBtn, 'hidden');
       toggleDisplayTheme();
     } else if (target.closest('[data-hamburger]')) {
-      toggleElement(dropdownBar, false);
+      toggleElement(dropdownBar, null, false);
     } else if (target.closest('[data-search-location]')) {
       updateWeather(locationInput.value);
     }

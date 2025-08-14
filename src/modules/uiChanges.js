@@ -5,6 +5,9 @@ const DAYS_IN_WEEK = 7;
 const STARTING_IDX = 1;
 
 export async function updateWeather(location) {
+  if(!location) {
+    return null;
+  }
   try {
     const data = await api.getWeatherData(location);
 
