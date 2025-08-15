@@ -308,6 +308,11 @@ h3 {
 
 // DARK ELEMENT STYLING 
 
+input.dark {
+  border-bottom: 2px solid white;
+  color: white;
+}
+
 body.dark {
   color: $light-bg;
   background-color: $dark-bg
@@ -343,7 +348,7 @@ header.dark {
   box-shadow: 0px 0px 25px rgb(21, 16, 63);
 }
 #header-right.dark input, #header-right.dark #search-location-btn {
-  background-color: white;
+  background-color: $dark-dash-bg;
 }
 
 
