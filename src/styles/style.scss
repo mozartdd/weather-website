@@ -126,26 +126,15 @@ header {
 
   right: 0px;
   top: 2px;
-  border-right: $header-comp-borders;
-  border-top-right-radius: $small-radius;
-  border-bottom-right-radius: $small-radius;
-}
-
-.location-btn {
-  img {
-    transition: transform 0.5s;
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
 }
 
 input {
   background-color: $light-dash-bg;
   max-width: 250px;
+  min-height: 2rem;
 
-  border: $header-comp-borders;
-  border-radius: $small-radius;
+  border: none;
+  border-bottom: $header-comp-borders;
 }
 
 .theme-btn {

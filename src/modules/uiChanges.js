@@ -86,6 +86,7 @@ export function createFutureWeatherCards() {
       wind: createChild(card, 'p', 'future-wind')
     };
 
+    futureEls[i].icon.setAttribute('aria-hidden', 'true');
     els.futureContainer.appendChild(card);
   }
 }

@@ -10,7 +10,10 @@ const els = {
   lightElements: document.querySelectorAll('.light'),
   header: document.querySelector('header'),
   celsius: document.querySelector('[data-c]'),
-  fahrenheit: document.querySelector('[data-f]')
+  fahrenheit: document.querySelector('[data-f]'),
+  darkIcon: document.querySelectorAll('.dark-icon'),
+  lightIcon: document.querySelectorAll('.light-icon')
+
 };
 
 // Toggles element hidden and visible state
@@ -38,6 +41,8 @@ function headerEventDelegation() {
     if (target.closest('[data-light]') || target.closest('[data-dark]')) {
       toggleElement(els.lightBtn, 'hidden');
       toggleElement(els.darkBtn, 'hidden');
+      els.darkIcon.forEach((icon) => toggleElement(icon, 'hidden'));
+      els.lightIcon.forEach((icon) => toggleElement(icon, 'hidden'));
       toggleDisplayTheme();
     } else if (target.closest('[data-hamburger]')) {
       toggleElement(els.dropdownBar, null, false);
