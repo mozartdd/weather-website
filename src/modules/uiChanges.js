@@ -4,122 +4,49 @@ import * as controls from './controls.js';
 const DAYS_IN_WEEK = 7;
 const STARTING_IDX = 1;
 
-export async function updateWeather(location) {
-  if(!location) {
-    return null;
-  }
-  try {
-    const data = await api.getWeatherData(location);
+// Centralized DOM selectors
+const els = {
+  currIcon: document.querySelector('[data-curr-icon]'),
+  time: document.querySelector('[data-time]'),
+  currTemp: document.querySelector('[data-curr-temp] p:first-child'),
+  currForecast: document.querySelector('[data-curr-forecast]'),
+  feelsLike: document.querySelector('[data-feels-like]'),
+  description: document.querySelector('[data-description]'),
+  location: document.querySelector('[data-location]'),
+  air: document.querySelector('[data-air]'),
+  wind: document.querySelector('[data-wind]'),
+  humid: document.querySelector('[data-humid]'),
+  visibility: document.querySelector('[data-visibility]'),
+  sunrise: document.querySelector('[data-sunrise-time]'),
+  sunset: document.querySelector('[data-sunset-time]'),
+  futureContainer: document.querySelector('[data-future-cards]')
+};
 
-    displayCurrentWeather(data);
-    displayFutureWeather(location);
-  } catch (error) {
-    document.querySelector('[data-location]').textContent =
-      'Could not find this Location.';
-    console.error('Error fetching weather details:', error);
-  }
-}
+// Cache for future weather cards
+const futureEls = {};
 
-// Displays current weather data on webpage
-function displayCurrentWeather(data) {
-  const icon = returnCorrectWeatherIcon(data.icon);
-  console.log(icon);
+// Helper functions
+function setText(el, value) { if (el) el.textContent = value; }
+function setSrc(el, value) { if (el) el.setAttribute('src', value); }
 
-  document.querySelector('[data-curr-icon]').setAttribute('src', icon);
-  document.querySelector('[data-time]').textContent = data.currentTime;
-  document.querySelector('[data-curr-temp] p:first-child').textContent =
-    postfixElementDegree(data);
-  document.querySelector('[data-curr-forecast]').textContent = data.conditions;
-  document.querySelector('[data-feels-like]').textContent =
-    'Feels like ' + postfixElementDegree(data);
-  document.querySelector('[data-description]').textContent = data.description;
-  document.querySelector('[data-location]').textContent = data.address;
-  document.querySelector('[data-air]').textContent = data.cloudCover + 'AQI';
-  document.querySelector('[data-wind]').textContent = postfixElementSpeed(data);
-  document.querySelector('[data-humid]').textContent = data.humidity + '%';
-  document.querySelector('[data-visibility]').textContent =
-    postfixElementWithDistance(data);
-  document.querySelector('[data-sunrise-time]').textContent = data.sunrise;
-  document.querySelector('[data-sunset-time]').textContent = data.sunset;
-}
-
-// Creates html elements for each day in future weather forecast
-export function createFutureWeatherCards() {
-  const futureContainer = document.querySelector('[data-future-cards]');
-
-  for (let i = STARTING_IDX; i < DAYS_IN_WEEK + 1; i++) {
-    const card = document.createElement('div');
-    const forecast = document.createElement('p');
-    const weather = document.createElement('p');
-    const wind = document.createElement('p');
-    const icon = document.createElement('img');
-    const day = document.createElement('p');
-
-    card.classList.add('card');
-    card.setAttribute('data', `${i}`);
-
-    day.classList.add('future-day');
-    icon.classList.add('weather-icon');
-    icon.setAttribute('aria-hidden', 'true');
-    forecast.classList.add('future-forecast');
-    weather.classList.add('future-weather');
-    wind.classList.add('future-wind');
-
-    futureContainer.appendChild(card);
-    card.appendChild(day);
-    card.appendChild(icon);
-    card.appendChild(forecast);
-    card.appendChild(weather);
-    card.appendChild(wind);
-  }
-}
-
-// Adds content to future weather day cards
-async function displayFutureWeather(location) {
-
-  for (let i = STARTING_IDX; i < DAYS_IN_WEEK + 1; i++) {
-    const f = await api.getFutureWeatherData(location, i);
-    let icon = returnCorrectWeatherIcon(f.icon);
-
-    i === STARTING_IDX
-      ? (document.querySelector(`[data="${i}"] .future-day`).textContent =
-          'Tomorrow')
-      : (document.querySelector(`[data="${i}"] .future-day`).textContent =
-          f.fDay);
-    document.querySelector(`[data="${i}"] .weather-icon`).textContent = 'ICON';
-    document.querySelector(`[data="${i}"] .future-forecast`).textContent =
-      f.fConditions;
-    document.querySelector(`[data="${i}"] .future-weather`).textContent =
-      futureTempPostfix(f);
-    document.querySelector(`[data="${i}"] .future-wind`).textContent =
-      futureWindSpeed(f);
-      document.querySelector(`[data="${i}"] .weather-icon`).setAttribute('src', icon);
-  }
-}
-
+// Postfix helpers
 function postfixElementSpeed(data) {
-  const notImperial = controls.currentMeasurement();
-  return notImperial ? data.windKm + ' Km/ph' : data.windM + ' M/ph';
+  return controls.currentMeasurement() ? data.windKm + ' Km/ph' : data.windM + ' M/ph';
 }
 function postfixElementDegree(data) {
-  const notImperial = controls.currentMeasurement();
-  return notImperial ? data.tempC + '°C' : data.tempF + '°F';
+  return controls.currentMeasurement() ? data.tempC + '°C' : data.tempF + '°F';
 }
 function postfixElementWithDistance(data) {
-  const notImperial = controls.currentMeasurement();
-  return notImperial ? data.visibility + ' Km' : data.visibility + ' Miles';
+  return controls.currentMeasurement() ? data.visibility + ' Km' : data.visibility + ' Miles';
 }
 function futureTempPostfix(data) {
-  const notImperial = controls.currentMeasurement();
-  return notImperial ? data.fTempC + '°C' : data.fTempF + '°F';
+  return controls.currentMeasurement() ? data.fTempC + '°C' : data.fTempF + '°F';
 }
 function futureWindSpeed(data) {
-  const notImperial = controls.currentMeasurement();
-  return notImperial
-    ? data.fWindKm + ' Km/ph'
-    : data.fWindM + ' M/ph';
+  return controls.currentMeasurement() ? data.fWindKm + ' Km/ph' : data.fWindM + ' M/ph';
 }
 
+// Weather icon mapping
 function returnCorrectWeatherIcon(icon) {
   const icons = {
     'clear-day': require('../assets/clear-day.svg'),
@@ -131,9 +58,82 @@ function returnCorrectWeatherIcon(icon) {
     'fog': require('../assets/fog.svg'),
     'rain': require('../assets/rain.svg'),
     'snow': require('../assets/snow.svg'),
-  }
-
+  };
   return icons[icon] || icons['partly-cloudy-day'];
 }
 
+// Create child element helper
+function createChild(parent, tag, cls) {
+  const el = document.createElement(tag);
+  el.classList.add(cls);
+  parent.appendChild(el);
+  return el;
+}
+
+// Create and cache future weather cards
+export function createFutureWeatherCards() {
+  for (let i = STARTING_IDX; i < DAYS_IN_WEEK + 1; i++) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.dataset.day = i;
+
+    futureEls[i] = {
+      card,
+      day: createChild(card, 'p', 'future-day'),
+      icon: createChild(card, 'img', 'weather-icon'),
+      forecast: createChild(card, 'p', 'future-forecast'),
+      weather: createChild(card, 'p', 'future-weather'),
+      wind: createChild(card, 'p', 'future-wind')
+    };
+
+    els.futureContainer.appendChild(card);
+  }
+}
+
+// Display current weather
+function displayCurrentWeather(data) {
+  setSrc(els.currIcon, returnCorrectWeatherIcon(data.icon));
+  setText(els.time, data.currentTime);
+  setText(els.currTemp, postfixElementDegree(data));
+  setText(els.currForecast, data.conditions);
+  setText(els.feelsLike, 'Feels like ' + postfixElementDegree(data));
+  setText(els.description, data.description);
+  setText(els.location, data.address);
+  setText(els.air, data.cloudCover + 'AQI');
+  setText(els.wind, postfixElementSpeed(data));
+  setText(els.humid, data.humidity + '%');
+  setText(els.visibility, postfixElementWithDistance(data));
+  setText(els.sunrise, data.sunrise);
+  setText(els.sunset, data.sunset);
+}
+
+// Display future weather
+async function displayFutureWeather(location) {
+  for (let i = STARTING_IDX; i < DAYS_IN_WEEK + 1; i++) {
+    const f = await api.getFutureWeatherData(location, i);
+    const card = futureEls[i];
+    if (!card) continue;
+
+    setText(card.day, i === STARTING_IDX ? 'Tomorrow' : f.fDay);
+    setSrc(card.icon, returnCorrectWeatherIcon(f.icon));
+    setText(card.forecast, f.fConditions);
+    setText(card.weather, futureTempPostfix(f));
+    setText(card.wind, futureWindSpeed(f));
+  }
+}
+
+// Main updateWeather function
+export async function updateWeather(location) {
+  if (!location) return null;
+  try {
+    const data = await api.getWeatherData(location);
+    displayCurrentWeather(data);
+    await displayFutureWeather(location);
+  } catch (error) {
+    setText(els.location, 'Could not find this Location.');
+    console.error('Error fetching weather details:', error);
+  }
+}
+
+// Initialize
 createFutureWeatherCards();
