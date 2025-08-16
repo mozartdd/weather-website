@@ -1,8 +1,8 @@
 @use 'style';
 
-@media (min-width: 768px) and (max-width: 1023px) {
+@media (min-width: 1024px){
   header {
-    justify-content: space-between;
+    justify-content: center;
   }
 
   #hamburger {
@@ -23,6 +23,7 @@
   }
 
   input {
+    max-width: 500px;
     min-height: 3rem;
     font-size: 1.6rem;
   }
@@ -51,8 +52,8 @@
 
   main {
     max-width: 65vw;
+    margin: auto;
     text-align: center;
-    margin: auto !important;
   }
 
   #curr-weather {
