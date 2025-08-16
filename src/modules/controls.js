@@ -1,5 +1,6 @@
 import { updateWeather } from './uiChanges.js';
 let notImperial = true;
+let currActiveLocation = 'Riga, Latvia';
 
 // Grouped selectors
 const els = {
@@ -48,6 +49,7 @@ function headerEventDelegation() {
       toggleElement(els.dropdownBar, null, false);
     } else if (target.closest('[data-search-location]')) {
       updateWeather(els.locationInput.value);
+      currActiveLocation = els.locationInput.value;
       els.locationInput.value = '';
     }
   });
@@ -82,7 +84,7 @@ function toggleActiveClassLists(active, inactive) {
   inactive.classList.add('inactive');
   inactive.classList.remove('active');
   !els.locationInput.value
-    ? updateWeather('London, England')
+    ? updateWeather(currActiveLocation)
     : updateWeather(els.locationInput.value);
 }
 
@@ -91,6 +93,5 @@ export function currentMeasurement() {
 }
 
 changeActiveDegree();
-updateWeather('London, England');
 closeHamburgerBar();
 headerEventDelegation();

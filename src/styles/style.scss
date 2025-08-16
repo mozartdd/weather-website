@@ -41,6 +41,13 @@ $shadow: 0px 0px 2rem rgb(196, 194, 194);
 
 // HEADER STYLING
 
+#loading-svg {
+  width: 30vw;
+  margin: auto;
+  animation: rotate infinite 3s; 
+  display: none;
+}
+
 body {
   background-color: $light-bg;
   color: rgb(4, 4, 94);
@@ -50,6 +57,7 @@ header {
   height: 4rem;
   background-color: $light-dash-bg;
   display: flex;
+  // display: none;
   position: relative;
 
   align-items: center;
@@ -191,6 +199,7 @@ input {
 
 main {
   @include flex-column;
+  display: flex;
 
   margin: 0.4rem 2rem;
   gap: 1rem;
@@ -373,5 +382,11 @@ header.dark
   }
   to {
     transform: scaleY(1);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(-360deg);
   }
 }

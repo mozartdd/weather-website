@@ -70,20 +70,12 @@ $border: 20px;
     font-size: 1.5rem;
   }
 
-  h1 {
+  h1, #sun-p {
     display: none;
   }
 
-  #sun-p, #next-p {
-    position: absolute;
-  }
-  #sun-p {
-    bottom: 300px;
-    margin-left: 3.6rem;
-    font-size: 2rem;
-    font-weight: 300;
-  }
   #next-p {
+    position: absolute;
     font-size: 1.5rem;
     top: 79px;
   }
@@ -95,6 +87,7 @@ $border: 20px;
     min-width: 1000px;
     max-width: 1100px;
 
+    // display: none;
     display: grid;
 
     grid-template: 
@@ -103,7 +96,7 @@ $border: 20px;
     'sun sun future future'
     ;
     grid-template-columns: 2fr 2fr 1fr 1fr;
-    grid-template-rows: 350px 400px 300px;
+    grid-template-rows: 350px 400px 250px;
   }
 
   #curr-weather {
@@ -115,14 +108,22 @@ $border: 20px;
     }
   }
   #middle {
-    margin: auto 1rem;
+    margin: auto 0px 2rem 0px;
     gap: 5rem;
+    font-size: 1.5rem;
     
     #curr-temp {
       p:first-child {
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
     }
+  }
+  #current-icon {
+    width: 100px;
+  }
+
+  #mid-rightw {
+    margin-bottom: 2rem;
   }
   #bottom {
     margin: 0 0 2rem 2rem;
@@ -138,12 +139,13 @@ $border: 20px;
   }
 
   #curr-details div div {
-    margin: auto 0px;
+    margin: auto 10px;
+    font-size: 1.4rem;
   }
   #curr-details p {
-    margin: 0 4rem 2rem;
-    font-weight: 600;
-    font-size: 1.3rem;
+    margin: 0 0px 5rem 4rem;
+    font-weight: 400;
+    font-size: 1.6rem;
   }
 
   #curr-details img {
@@ -158,7 +160,7 @@ $border: 20px;
       flex-direction: column;
       overflow: auto;
 
-      height: 1120px;
+      height: 1060px;
       gap: 2rem;
       min-width: 350px;
 
@@ -179,24 +181,28 @@ $border: 20px;
 
     .weather-icon {
       // left: 0px;
-      margin: 30px 0px;
+      margin: 44px -10px;
       width: 5rem;;
     }
 
     .future-day {
-      margin: 40px 80px;
+      margin: 55px 70px;
+      font-size: 1.2rem;
     }
     .future-forecast {
-      margin: 60px 80px;
+      font-size: 1.1rem;
+      margin: 80px 70px;
     }
     .future-weather {
       right: 0px;
-      margin: 25px 50px;
+      margin: 25px 25px;
       font-size: 1.4rem;
+      font-weight: 500;
     }
     .future-wind {
       right: 0px;
       margin: 55px 10px;
+      font-weight: 500;
       font-size: 1.2rem;
     }
   }

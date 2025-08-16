@@ -3,6 +3,8 @@ import * as controls from './controls.js';
 
 const DAYS_IN_WEEK = 7;
 const STARTING_IDX = 1;
+let headerStyle;
+let mainStyle;
 
 // Centralized DOM selectors
 const els = {
@@ -20,7 +22,10 @@ const els = {
   visibility: document.querySelector('[data-visibility]'),
   sunrise: document.querySelector('[data-sunrise-time]'),
   sunset: document.querySelector('[data-sunset-time]'),
-  futureContainer: document.querySelector('[data-future-cards]')
+  futureContainer: document.querySelector('[data-future-cards]'),
+  loadingSvg: document.querySelector('[data-load]'),
+  header: document.querySelector('header'),
+  main: document.querySelector('main')
 };
 
 // Cache for future weather cards
@@ -125,14 +130,32 @@ async function displayFutureWeather(location) {
   }
 }
 
+function showLoadingIcon() {
+  headerStyle = els.header.style.display;
+  mainStyle = els.main.style.display;
+
+  els.loadingSvg.style.display = 'block';
+  els.header.style.display = 'none';
+  els.main.style.display = 'none';
+}
+
+function hideLoadingIcon() {
+  els.loadingSvg.style.display = 'none';
+  els.header.style.display = headerStyle;
+  els.main.style.display = mainStyle;
+}
+
 // Main updateWeather function
 export async function updateWeather(location) {
   if (!location) return null;
   try {
+    showLoadingIcon();
     const data = await api.getWeatherData(location);
+    hideLoadingIcon();
     displayCurrentWeather(data);
     await displayFutureWeather(location);
   } catch (error) {
+    // hideLoadingIcon();
     setText(els.location, 'Could not find this Location.');
     console.error('Error fetching weather details:', error);
   }
@@ -140,3 +163,4 @@ export async function updateWeather(location) {
 
 // Initialize
 createFutureWeatherCards();
+updateWeather('Riga, Latvia')
