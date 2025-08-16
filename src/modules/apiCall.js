@@ -2,7 +2,7 @@ const { DateTime } = require('luxon');
 
 // Fetches weather api from visual crossing website
 export async function getWeatherPromise(location) {
-  const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=DUX8WLQUANH4ZKTHFG32ZK63L`;
+  const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?key=EWTMF5AFJGDJLKEQ4SE36PV85`;
 
   try {
     const result = await fetch(url);

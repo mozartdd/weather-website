@@ -13,6 +13,7 @@ const els = {
   feelsLike: document.querySelector('[data-feels-like]'),
   description: document.querySelector('[data-description]'),
   location: document.querySelector('[data-location]'),
+  desktopLocation: document.querySelector('[data-desktop-location]'),
   air: document.querySelector('[data-air]'),
   wind: document.querySelector('[data-wind]'),
   humid: document.querySelector('[data-humid]'),
@@ -100,6 +101,7 @@ function displayCurrentWeather(data) {
   setText(els.feelsLike, 'Feels like ' + postfixElementDegree(data));
   setText(els.description, data.description);
   setText(els.location, data.address);
+  setText(els.desktopLocation, data.address);
   setText(els.air, data.cloudCover + 'AQI');
   setText(els.wind, postfixElementSpeed(data));
   setText(els.humid, data.humidity + '%');

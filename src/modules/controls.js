@@ -48,6 +48,7 @@ function headerEventDelegation() {
       toggleElement(els.dropdownBar, null, false);
     } else if (target.closest('[data-search-location]')) {
       updateWeather(els.locationInput.value);
+      els.locationInput.value = '';
     }
   });
 }

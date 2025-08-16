@@ -1,8 +1,21 @@
+$border: 20px;
+
 @use 'style';
 
 @media (min-width: 1024px){
+
+  body {
+    height: 100vh;
+    margin: 1rem auto;
+  }
   header {
-    justify-content: center;
+    justify-content: space-between;
+    border-radius: 1rem;
+    padding: .5rem 2rem;
+    border: $border;
+    min-width: 1000px;
+    max-width: 1100px;
+    margin: auto;
   }
 
   #hamburger {
@@ -15,6 +28,8 @@
   #dropdown {
     height: 4rem;
     width: 7rem;
+    left: 10px;
+    
 
     button {
       height: 3rem;
@@ -23,19 +38,24 @@
   }
 
   input {
-    max-width: 500px;
-    min-height: 3rem;
-    font-size: 1.6rem;
+    max-width: 300px;
+    min-height: 2.4rem;
+    font-size: 1.3rem;
   }
   #search-location-btn {
 
     img {
-      width: 30px;
+      width: 25px;
     }
   }
 
   #header-left.dark {
     background-color: style.$dark-dash-bg;
+  }
+
+  #desktop-location {
+    display: inline-block;
+    font-size: 1.2rem;
   }
 
   #logo {
@@ -50,24 +70,142 @@
     font-size: 1.5rem;
   }
 
+  h1 {
+    display: none;
+  }
+
+  #sun-p, #next-p {
+    position: absolute;
+  }
+  #sun-p {
+    bottom: 300px;
+    margin-left: 3.6rem;
+    font-size: 2rem;
+    font-weight: 300;
+  }
+  #next-p {
+    font-size: 1.5rem;
+    top: 79px;
+  }
+
   main {
-    max-width: 65vw;
-    margin: auto;
-    text-align: center;
+    gap: 2rem;
+    max-width: 75vw;
+    margin: 2rem auto;
+    min-width: 1000px;
+    max-width: 1100px;
+
+    display: grid;
+
+    grid-template: 
+    'curr curr future future'
+    'details details future future'
+    'sun sun future future'
+    ;
+    grid-template-columns: 2fr 2fr 1fr 1fr;
+    grid-template-rows: 350px 400px 300px;
   }
 
   #curr-weather {
+    grid-area: curr;
+    border-radius: $border !important;
 
     #top h2, #top p {
       font-size: 2rem;
     }
   }
   #middle {
-    margin: auto;
+    margin: auto 1rem;
     gap: 5rem;
+    
+    #curr-temp {
+      p:first-child {
+        font-size: 2rem;
+      }
+    }
+  }
+  #bottom {
+    margin: 0 0 2rem 2rem;
+  }
+
+  #curr-details {
+    grid-area: details;
+    gap: 1.5rem;
+  }
+
+  #curr-details div {
+    border-radius: 20px;
   }
 
   #curr-details div div {
-    margin: auto;
+    margin: auto 0px;
   }
+  #curr-details p {
+    margin: 0 4rem 2rem;
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+
+  #curr-details img {
+    width: 30px;
+  }
+
+  #future-data{
+    grid-area: future;
+
+    #future-forecast {
+      display: flex;
+      flex-direction: column;
+      overflow: auto;
+
+      height: 1120px;
+      gap: 2rem;
+      min-width: 350px;
+
+      position: relative;
+    }
+  }
+
+  .card {
+    border-radius: $border;
+    padding: 1rem;
+    position: relative;
+    font-size: .8rem;
+    display: flex;
+
+    p, img {
+      position: absolute;
+    }
+
+    .weather-icon {
+      // left: 0px;
+      margin: 30px 0px;
+      width: 5rem;;
+    }
+
+    .future-day {
+      margin: 40px 80px;
+    }
+    .future-forecast {
+      margin: 60px 80px;
+    }
+    .future-weather {
+      right: 0px;
+      margin: 25px 50px;
+      font-size: 1.4rem;
+    }
+    .future-wind {
+      right: 0px;
+      margin: 55px 10px;
+      font-size: 1.2rem;
+    }
+  }
+
+  #sun-details {
+    grid-area: sun;
+    border-radius: $border !important;
+    padding: 4rem;
+    font-size: 1.4rem;
+  }
+
 }
