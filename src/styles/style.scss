@@ -69,13 +69,14 @@ header {
   border-bottom-right-radius: $small-radius;
   top: 4rem;
   left: 0px;
-  height: 5rem;
+  height: 3rem;
   width: 85px;
   border: $header-comp-borders;
   border-top: 1px solid rgb(192, 168, 168);
   justify-content: space-between;
   padding: 0.5rem;
   display: none;
+  z-index: 1;
 
   transform-origin: top;
   animation: drop-down 0.6s alternate;
@@ -85,7 +86,7 @@ header {
     border-radius: $small-radius;
     font-weight: bold;
     width: 2rem;
-    height: 3rem;
+    height: 2rem;
   }
 }
 .active {
@@ -132,8 +133,9 @@ header {
 
 input {
   background-color: $light-dash-bg;
-  max-width: 250px;
+  width: 40vw;
   min-height: 2rem;
+  font-size: 1.2rem;
 
   border: none;
   border-bottom: $header-comp-borders;
@@ -141,10 +143,10 @@ input {
 
 .theme-btn {
   cursor: pointer;
+  font-size: 1.2rem;
 
-  border-radius: $small-radius;
+  border-radius: 2rem;
   overflow: hidden;
-  min-width: 80px;
   transition: transform 0.2s;
 
   &:active {
@@ -157,6 +159,7 @@ input {
 
 #dark-theme {
   padding: 0px;
+  min-width: 6rem;
   p {
     color: $light-dash-bg;
   }
@@ -166,7 +169,7 @@ input {
     gap: 5px;
     justify-content: center;
     animation: 1s slide-out;
-    background-color: $sky-blue;
+    background-color: $dark-bg;
   }
 }
 
@@ -202,11 +205,14 @@ main {
 
 h1 {
   transform: translateY(15px);
-  font-size: 1.8em;
+  font-size: 1.7em;
   text-align: center;
+  padding: none;
   font-weight: 200;
-  max-width: 80%;
+  // max-width: 55%;
   margin: auto;
+  transform: matrix(0px);
+  z-index: 0;
 }
 
 #curr-weather {
@@ -243,6 +249,7 @@ h2 {
 }
 #curr-temp {
   display: flex;
+  align-items: center;
 
   p:first-child {
     font-size: 2rem;
@@ -322,12 +329,7 @@ body.dark {
   background-color: $dark-bg
 }
 
-header.dark {
-  background-color: $dark-dash-bg;
-}
-
 #hamburger.dark {
-  background-color: $dark-dash-bg;
 
   div {
     background-color: white;
@@ -335,24 +337,23 @@ header.dark {
 }
 
 #curr-weather.dark {
-  background-color: $dark-dash-bg;
   box-shadow: 0px 0px 25px rgb(21, 16, 63);
 }
 
-#curr-details.dark div {
-  background-color: $dark-dash-bg;
-}
-
-#future-forecast.dark .card {
+#curr-details.dark div,
+#future-forecast.dark .card,
+#sun-details.dark,
+#header-right.dark input,
+#header-right.dark #search-location-btn,
+#curr-weather.dark,
+#hamburger.dark,
+header.dark
+{
   background-color: $dark-dash-bg;
 }
 
 #sun-details.dark {
-  background-color: $dark-dash-bg;
   box-shadow: 0px 0px 25px rgb(21, 16, 63);
-}
-#header-right.dark input, #header-right.dark #search-location-btn {
-  background-color: $dark-dash-bg;
 }
 
 

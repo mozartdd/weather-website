@@ -12,12 +12,61 @@
     }
   }
 
+  #dropdown {
+    height: 4rem;
+    width: 7rem;
+
+    button {
+      height: 3rem;
+      width: 3rem;
+    }
+  }
+
+  input {
+    min-height: 3rem;
+    font-size: 1.6rem;
+  }
+  #search-location-btn {
+
+    img {
+      width: 30px;
+    }
+  }
+
+  #header-left.dark {
+    background-color: style.$dark-dash-bg;
+  }
+
   #logo {
     display: block;
     font-size: 1.4rem;
   }
   #logo.dark {
-    background-color: style.$dark-dash-bg;
     color: white;
+  }
+
+  .theme-btn {
+    font-size: 1.5rem;
+  }
+
+  main {
+    max-width: 65vw;
+    margin: auto;
+    text-align: center;
+  }
+
+  #curr-weather {
+
+    #top h2, #top p {
+      font-size: 2rem;
+    }
+  }
+  #middle {
+    margin: auto;
+    gap: 5rem;
+  }
+
+  #curr-details div div {
+    margin: auto;
   }
 }
