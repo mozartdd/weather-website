@@ -1,16 +1,25 @@
 import { updateWeather } from './uiChanges.js';
 let notImperial = true;
 
-const locationInput = document.querySelector('[data-location-input]');
-const darkBtn = document.querySelector('[data-dark]');
-const lightBtn = document.querySelector('[data-light]');
-const dropdownBar = document.querySelector('[data-hb]');
-const lightElements = document.querySelectorAll('.light');
+// Grouped selectors
+const els = {
+  locationInput: document.querySelector('[data-location-input]'),
+  darkBtn: document.querySelector('[data-dark]'),
+  lightBtn: document.querySelector('[data-light]'),
+  dropdownBar: document.querySelector('[data-hb]'),
+  lightElements: document.querySelectorAll('.light'),
+  header: document.querySelector('header'),
+  celsius: document.querySelector('[data-c]'),
+  fahrenheit: document.querySelector('[data-f]'),
+  darkIcon: document.querySelectorAll('.dark-icon'),
+  lightIcon: document.querySelectorAll('.light-icon')
+
+};
 
 // Toggles element hidden and visible state
-function toggleElement(element, attribute,  bool = true) {
+function toggleElement(element, className, bool = true) {
   if (bool) {
-    element.classList.toggle(attribute);
+    element.classList.toggle(className);
   } else {
     element.style.display === 'flex'
       ? (element.style.display = 'none')
@@ -19,26 +28,26 @@ function toggleElement(element, attribute,  bool = true) {
 }
 
 function toggleDisplayTheme() {
-  lightElements.forEach((el) => {
+  els.lightElements.forEach((el) => {
     el.classList.toggle('dark');
   });
 }
 
 // Event delegation for header element
 function headerEventDelegation() {
-  const header = document.querySelector('header');
-
-  header.addEventListener('click', (event) => {
+  els.header.addEventListener('click', (event) => {
     const target = event.target;
 
     if (target.closest('[data-light]') || target.closest('[data-dark]')) {
-      toggleElement(lightBtn, 'hidden');
-      toggleElement(darkBtn, 'hidden');
+      toggleElement(els.lightBtn, 'hidden');
+      toggleElement(els.darkBtn, 'hidden');
+      els.darkIcon.forEach((icon) => toggleElement(icon, 'hidden'));
+      els.lightIcon.forEach((icon) => toggleElement(icon, 'hidden'));
       toggleDisplayTheme();
     } else if (target.closest('[data-hamburger]')) {
-      toggleElement(dropdownBar, null, false);
+      toggleElement(els.dropdownBar, null, false);
     } else if (target.closest('[data-search-location]')) {
-      updateWeather(locationInput.value);
+      updateWeather(els.locationInput.value);
     }
   });
 }
@@ -50,22 +59,19 @@ function closeHamburgerBar() {
       !event.target.closest('[data-hamburger]') &&
       !event.target.closest('[data-hb]')
     ) {
-      dropdownBar.style.display = 'none';
+      els.dropdownBar.style.display = 'none';
     }
   });
 }
 
 function changeActiveDegree() {
-  const celsius = document.querySelector('[data-c]');
-  const fahrenheit = document.querySelector('[data-f]');
-
-  celsius.addEventListener('click', () => {
+  els.celsius.addEventListener('click', () => {
     notImperial = true;
-    toggleActiveClassLists(celsius, fahrenheit);
+    toggleActiveClassLists(els.celsius, els.fahrenheit);
   });
-  fahrenheit.addEventListener('click', () => {
+  els.fahrenheit.addEventListener('click', () => {
     notImperial = false;
-    toggleActiveClassLists(fahrenheit, celsius);
+    toggleActiveClassLists(els.fahrenheit, els.celsius);
   });
 }
 
@@ -74,16 +80,14 @@ function toggleActiveClassLists(active, inactive) {
   active.classList.remove('inactive');
   inactive.classList.add('inactive');
   inactive.classList.remove('active');
-  !locationInput.value
+  !els.locationInput.value
     ? updateWeather('London, England')
-    : updateWeather(locationInput.value);
+    : updateWeather(els.locationInput.value);
 }
 
 export function currentMeasurement() {
   return notImperial;
 }
-
-
 
 changeActiveDegree();
 updateWeather('London, England');

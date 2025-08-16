@@ -128,26 +128,15 @@ header {
 
   right: 0px;
   top: 2px;
-  border-right: $header-comp-borders;
-  border-top-right-radius: $small-radius;
-  border-bottom-right-radius: $small-radius;
-}
-
-.location-btn {
-  img {
-    transition: transform 0.5s;
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
 }
 
 input {
   background-color: $light-dash-bg;
   max-width: 250px;
+  min-height: 2rem;
 
-  border: $header-comp-borders;
-  border-radius: $small-radius;
+  border: none;
+  border-bottom: $header-comp-borders;
 }
 
 .theme-btn {
@@ -323,6 +312,11 @@ h3 {
 
 // DARK ELEMENT STYLING 
 
+input.dark {
+  border-bottom: 2px solid white;
+  color: white;
+}
+
 body.dark {
   color: $light-bg;
   background-color: $dark-bg
@@ -358,7 +352,7 @@ header.dark {
   box-shadow: 0px 0px 25px rgb(21, 16, 63);
 }
 #header-right.dark input, #header-right.dark #search-location-btn {
-  background-color: white;
+  background-color: $dark-dash-bg;
 }
 
 
