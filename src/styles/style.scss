@@ -4,11 +4,10 @@ $dark-bg: #0f3062;
 $dark-dash-bg: #001e42;
 $header-comp-borders: 2px solid gray;
 $sky-blue: #415a77;
-$small-padding: 3px;
-$input-position: -25px;
-$small-radius: 10px;
+$small-padding: .2rem;
+$small-radius: 8%;
 $small-margin: 1rem;
-$shadow: 0px 0px 25px rgb(196, 194, 194);
+$shadow: 0px 0px 2rem rgb(196, 194, 194);
 
 @font-face {
   font-family: 'sansJamal';
@@ -48,6 +47,7 @@ body {
 }
 
 header {
+  height: 4rem;
   background-color: $light-dash-bg;
   display: flex;
   position: static;
@@ -67,9 +67,9 @@ header {
   background-color: $light-dash-bg;
   border-bottom-left-radius: $small-radius;
   border-bottom-right-radius: $small-radius;
-  top: 45px;
+  top: 4rem;
   left: 0px;
-  height: 55px;
+  height: 5rem;
   width: 85px;
   border: $header-comp-borders;
   border-top: 1px solid rgb(192, 168, 168);
@@ -81,9 +81,11 @@ header {
   animation: drop-down 0.6s alternate;
 
   button {
+    cursor: pointer;
     border-radius: $small-radius;
     font-weight: bold;
     width: 2rem;
+    height: 3rem;
   }
 }
 .active {
@@ -105,7 +107,7 @@ header {
   div {
     width: 20px;
     height: $small-padding;
-    background-color: black;
+    background-color: $dark-bg;
   }
 }
 
@@ -211,9 +213,11 @@ main {
 
 h1 {
   transform: translateY(15px);
-  font-size: 1.5rem;
+  font-size: 1.8em;
   text-align: center;
   font-weight: 200;
+  max-width: 80%;
+  margin: auto;
 }
 
 #curr-weather {

@@ -1,0 +1,23 @@
+@use 'style';
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  header {
+    justify-content: space-between;
+  }
+
+  #hamburger {
+    div {
+      height: .33rem;
+      width: 1.9rem;
+    }
+  }
+
+  #logo {
+    display: block;
+    font-size: 1.4rem;
+  }
+  #logo.dark {
+    background-color: style.$dark-dash-bg;
+    color: white;
+  }
+}
