@@ -50,10 +50,10 @@ export async function getWeatherData(location) {
 export async function getFutureWeatherData(location, idx) {
   try {
     const weatherData = await getWeatherPromise(location);
-    const f = weatherData.days; // f === future
+    const f = weatherData.days; // Extracting future weather in to var named 'f'
     if (!f[idx]) throw new Error(`No data for day index ${idx}`);
 
-    const fDataObj = {
+    return {
       fConditions: f[idx].conditions,
       fTempC: fahrenheitToCelsius(f[idx].temp),
       fTempF: f[idx].temp,
@@ -62,16 +62,15 @@ export async function getFutureWeatherData(location, idx) {
       fDay: DateTime.fromISO(f[idx].datetime).toFormat('LLL dd'),
       icon: f[idx].icon,
     };
-    return fDataObj;
   } catch (error) {
     logError(error);
   }
 }
 
-export function fahrenheitToCelsius(temp) {
+function fahrenheitToCelsius(temp) {
   return Math.round(((temp - 32) * 5) / 9);
 }
-export function milesToKm(miles) {
+function milesToKm(miles) {
   return Math.round(miles * 1.60934);
 }
 

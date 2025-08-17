@@ -155,7 +155,6 @@ export async function updateWeather(location) {
     displayCurrentWeather(data);
     await displayFutureWeather(location);
   } catch (error) {
-    // hideLoadingIcon();
     setText(els.location, 'Could not find this Location.');
     console.error('Error fetching weather details:', error);
   }

@@ -14,7 +14,6 @@ const els = {
   fahrenheit: document.querySelector('[data-f]'),
   darkIcon: document.querySelectorAll('.dark-icon'),
   lightIcon: document.querySelectorAll('.light-icon')
-
 };
 
 // Toggles element hidden and visible state
