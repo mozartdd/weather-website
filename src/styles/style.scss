@@ -1,11 +1,11 @@
 $light-bg: #549bcad3;
-$light-dash-bg: #d7e5f0;
+$light-dash-bg: #b6dbf7;
 $dark-bg: #0f3062;
 $dark-dash-bg: #001e42;
 $header-comp-borders: 2px solid gray;
 $sky-blue: #415a77;
 $small-padding: .2rem;
-$small-radius: 8%;
+$small-radius: 10px;
 $small-margin: 1rem;
 $shadow: 0px 0px 2rem rgb(196, 194, 194);
 
@@ -49,8 +49,9 @@ $shadow: 0px 0px 2rem rgb(196, 194, 194);
 }
 
 body {
-  background-color: $light-bg;
+  background: radial-gradient(#6a8abb 60%, #0f3062);
   color: rgb(4, 4, 94);
+  height: 100vh;
 }
 
 header {
@@ -182,8 +183,8 @@ input {
 }
 
 #light-theme {
-  border: 1px solid $sky-blue;
-  background-color: $light-bg;
+  border: 1px solid $light-bg;
+  background-color: white;
 
   .sliding-light {
     display: flex;
@@ -191,7 +192,7 @@ input {
     gap: 5px;
     justify-content: center;
     animation: 1s slide-in;
-    background-color: $light-bg;
+    background-color: white;
   }
 }
 
@@ -203,12 +204,11 @@ main {
 
   margin: 0.4rem 2rem;
   gap: 1rem;
-  height: 100%;
+  height: 100vh;
 
   section:not(#curr-details, #future-data) {
     border-radius: $small-radius;
     background-color: $light-dash-bg;
-    box-shadow: $shadow;
   }
 }
 
@@ -219,7 +219,7 @@ h1 {
   padding: none;
   font-weight: 200;
   // max-width: 55%;
-  margin: auto;
+  margin: 1rem auto .5rem auto;
   transform: matrix(0px);
   z-index: 0;
 }
@@ -326,7 +326,15 @@ h3 {
   margin: s;
 }
 
+h1, #next-p, #sun-p {
+  color: white;
+}
+
 // DARK ELEMENT STYLING 
+
+h1.dark, p.dark {
+  color: white;
+}
 
 input.dark {
   border-bottom: 2px solid white;
@@ -359,6 +367,7 @@ body.dark {
 header.dark
 {
   background-color: $dark-dash-bg;
+  color: white !important;
 }
 
 #sun-details.dark {
